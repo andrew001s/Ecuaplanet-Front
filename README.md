@@ -33,7 +33,7 @@ Este proyecto utiliza **React Native** con **Expo** para el desarrollo de aplica
 Clona este repositorio con el siguiente comando:
 
 ```bash
-git https://github.com/andrew001s/Ecuaplanet-Front.git
+git clone https://github.com/andrew001s/Ecuaplanet-Front.git
 cd Ecuaplanet-Front
 ```
 
@@ -170,9 +170,9 @@ Utiliza el formato de **Conventional Commits** para los mensajes de commit:
 
 ### Ejemplos:
 
-- ✨ `:sparkles: feat: agregar funcionalidad de inicio de sesión`
-- 🔧 `:wrench: fix: corregir configuración del linter`
-- 🖊️ `:pencil: doc: actualizar documentación del README`
+- ✨ `feat: :sparkles: agregar funcionalidad de inicio de sesión`
+- 🔧 `fix: :wrench: corregir configuración del linter`
+- 🖊️ `doc: :pencil: actualizar documentación del README`
 
 **⚠️ Importante ⚠️**: Asegúrte de que todos los commits sigan el formato de **Conventional Commits** y que el código pase las verificaciones de ESLint y Prettier antes de realizar un push.
 
