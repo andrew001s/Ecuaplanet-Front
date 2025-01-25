@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import Material from "@expo/vector-icons/build/MaterialCommunityIcons";
+import Material from '@expo/vector-icons/build/MaterialCommunityIcons';
 import './global.css';
 
 export default function App() {
@@ -15,8 +15,8 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
+    flex: 1,
     justifyContent: 'center',
   },
 });
