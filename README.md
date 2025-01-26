@@ -101,6 +101,42 @@ root
 ├── .prettierrc     # Configuración de Prettier
 ```
 
+### Convención de Nombres
+En este proyecto, seguimos las siguientes convenciones para nombrar archivos y carpetas, con el objetivo de mantener la coherencia y claridad en el código.
+
+1. ***Archivos de Componentes:** PascalCase
+Los archivos que contienen componentes deben utilizar PascalCase, donde cada palabra comienza con una letra mayúscula, sin espacios ni guiones.
+
+Ejemplos:
+
+MyComponent.tsx
+UserProfile.tsx
+HomeScreen.tsx
+
+2. **Archivos de Funciones o Utilidades:** camelCase
+Los archivos que contienen funciones o utilidades (por ejemplo, funciones de ayuda o hooks personalizados) deben utilizar camelCase, comenzando con una letra minúscula en la primera palabra y con mayúsculas en las siguientes.
+
+Ejemplos:
+
+useAuth.ts
+formatDate.ts
+calculateTotal.ts
+
+3. **Archivos de Estilos:** snake_case
+Para los archivos de estilo, se recomienda el uso de snake_case, separando las palabras con guiones bajos.
+
+Ejemplos:
+
+app_styles.css
+
+4. **Carpetas:** snake_case o kebab-case
+Las carpetas deben seguir snake_case o kebab-case, ya que son fáciles de leer y funcionan bien con las rutas de los archivos.
+
+Ejemplos:
+
+api_component
+
+
 ### ESLint y Prettier
 1. Ejecuta el linter para verificar errores:
    ```bash
