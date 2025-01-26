@@ -9,10 +9,10 @@
     <li>Normal Uquillas</li>
 </ul>
 
+
 # React Native Expo Project
 
 ## ✨ Bienvenida
-
 Este proyecto utiliza **React Native** con **Expo** para el desarrollo de aplicaciones móviles multiplataforma. Este documento detalla cómo clonar, instalar, ejecutar el proyecto y seguir las mejores prácticas.
 
 ---
@@ -56,7 +56,6 @@ npm install
 ```bash
 npm start
 ```
-
 Esto abrirá el servidor de desarrollo en tu navegador. Escanea el código QR con la aplicación **Expo Go**.
 
 ### 2. Ejecutar en **Android**:
@@ -64,7 +63,6 @@ Esto abrirá el servidor de desarrollo en tu navegador. Escanea el código QR co
 ```bash
 npm run android
 ```
-
 Asegúrate de tener un emulador Android en ejecución o un dispositivo físico conectado con la depuración USB habilitada.
 
 ### 3. Ejecutar en **iOS** (Mac requerido):
@@ -72,7 +70,6 @@ Asegúrate de tener un emulador Android en ejecución o un dispositivo físico c
 ```bash
 npm run ios
 ```
-
 Esto abrirá el simulador de iOS si Xcode está instalado correctamente.
 
 ### 4. Ejecutar en **Web**:
@@ -80,7 +77,6 @@ Esto abrirá el simulador de iOS si Xcode está instalado correctamente.
 ```bash
 npm run web
 ```
-
 Esto abrirá la aplicación en tu navegador predeterminado.
 
 ---
@@ -106,7 +102,6 @@ root
 ```
 
 ### ESLint y Prettier
-
 1. Ejecuta el linter para verificar errores:
    ```bash
    npm run lint
@@ -122,8 +117,13 @@ root
 
 **⚠️ Importante ⚠️**: Asegúrte de ejecutar **ESLint** y **Prettier** antes de hacer push a cualquier rama.
 
-Configura tu editor (como VS Code) para ejecutar **ESLint** y **Prettier** automáticamente al guardar.
+Configura tu editor (como VS Code) para ejecutar **ESLint**, y **Prettier** automáticamente al guardar.
 
+---
+### Extensiones
+1. [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
+2. [ESlint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+3. [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 ---
 
 ## 🌈 Tailwind CSS
@@ -131,7 +131,6 @@ Configura tu editor (como VS Code) para ejecutar **ESLint** y **Prettier** autom
 Este proyecto utiliza **Tailwind CSS** con [nativewind](https://www.nativewind.dev/).
 
 ### Uso:
-
 Usa clases de Tailwind en los componentes de React Native:
 
 ```jsx
@@ -139,9 +138,7 @@ import { View, Text } from 'react-native';
 
 export default function App() {
   return (
-    <View className="flex-1 justify-center items-center bg-blue-500">
-      {' '}
-      //Clases de Tailwind
+    <View className="flex-1 justify-center items-center bg-blue-500"> //Clases de Tailwind
       <Text className="text-white text-lg font-bold">Hola, Tailwind!</Text>
     </View>
   );
@@ -185,3 +182,4 @@ Utiliza el formato de **Conventional Commits** para los mensajes de commit:
 **⚠️ Importante ⚠️**: Asegúrte de que todos los commits sigan el formato de **Conventional Commits** y que el código pase las verificaciones de ESLint y Prettier antes de realizar un push.
 
 Recomendamos usar la extensión [Conventional Commits](https://marketplace.visualstudio.com/items?itemName=vivaxy.vscode-conventional-commits) para VS Code para facilitar este proceso.
+
