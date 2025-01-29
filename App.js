@@ -1,22 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Material from '@expo/vector-icons/build/MaterialCommunityIcons';
+//import { StatusBar } from 'expo-status-bar';
+//import { StyleSheet, Text, View } from 'react-native';
+import LoginScreen from './src/screens/LoginScreen';
+
 import './global.css';
 
 export default function App() {
-  return (
-    <View style={styles.container} className="bg-red-500">
-      <Text>Open up App.js to start working on your app!</Text>
-      <Material name="flower-tulip" size={24} color="black" />
-      <StatusBar style="auto" />
-    </View>
-  );
+  return <LoginScreen />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-  },
-});
