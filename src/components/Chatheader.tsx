@@ -1,24 +1,18 @@
-import { Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { View, Text, TouchableOpacity } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
-import React from 'react';
-
-const Chatheader = () => {
+const Header = () => {
   return (
-    <View className="pt-4 justify-center items-center bg-white">
-      <View className="pr-6">
-        <View className="flex flex-row align-center">
-          <Ionicons
-            name="arrow-back"
-            className="right-44"
-            size={24}
-            color="#9095A0FF"
-          />
-          <Text className="text-xl font-semibold text-[323842FF]">Chat</Text>
-        </View>
+    <View className="pt-4 bg-white">
+      <View className="relative flex-row items-center justify-center h-12">
+        <TouchableOpacity className="absolute left-4">
+          <Ionicons name="arrow-back" size={24} color="#9095A0FF" />
+        </TouchableOpacity>
+
+        <Text className="text-xl font-semibold text-[#323842FF]">Chat</Text>
       </View>
     </View>
   );
 };
 
-export default Chatheader;
+export default Header;

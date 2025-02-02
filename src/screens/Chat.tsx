@@ -24,19 +24,26 @@ const Chat = () => {
     [],
   );
   const [value, setValue] = useState('');
-
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     setMessages([initialMessages]);
   }, []);
 
   const sendMessage = async () => {
+    if (isLoading) return;
+
+    setIsLoading(true);
     setValue('');
     setMessages([...messages, { text: value, role: 'user' }]);
+
     const message = await getCultivo(value);
+
     setMessages((prevMessages) => [
       ...prevMessages,
       { text: message, role: 'bot' },
     ]);
+
+    setIsLoading(false);
   };
 
   return (
@@ -48,7 +55,7 @@ const Chat = () => {
         <View className="flex-1">
           <Chatheader />
           <View className="flex-1 p-4 ">
-            <BubbleChat messages={messages} />
+            <BubbleChat messages={messages} isLoading={isLoading} />
           </View>
 
           <View className="flex-row items-center justify-between bg-white p-4 pl-6 pr-6">
