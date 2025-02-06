@@ -2,13 +2,6 @@ import axios from "axios";
 import { getAuth } from "firebase/auth";
 import { User } from "../context/user.types";
 
-// export interface User {
-//   nombre: string;
-//   apellido: string;
-//   cargo: string;
-//   preferencias: number[];
-// }
-
 const API_URL = "http://192.168.3.205:8080/api/user/preferences"; // Ruta en el backend
 
 export const fetchUserPreferences = async () => {

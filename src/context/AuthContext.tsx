@@ -11,13 +11,6 @@ interface AuthContextType {
   isLoading: boolean; // Agrega isLoading
 }
 
-// interface User {
-//   name: string;
-//   surname: string;
-//   position: string;
-//   preferences: number[];
-// }
-
 export const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
