@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { User } from '../context/user.types'; // Importa la interfaz User
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -10,13 +11,12 @@ interface AuthContextType {
   isLoading: boolean; // Agrega isLoading
 }
 
-interface User {
-  uid: string;
-  name: string;
-  surname: string;
-  position: string;
-  preferences: number[];
-}
+// interface User {
+//   name: string;
+//   surname: string;
+//   position: string;
+//   preferences: number[];
+// }
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 

@@ -3,11 +3,22 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { ErrorMessage } from '../components/ErrorMessage';
 import { useAuth } from '../hooks/useAuth';
+import { useRouter } from 'expo-router';
+
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { loading, error, handleLogin } = useAuth();
+  const router = useRouter(); // Usamos el router de expo-router
+
+  const handleLoginPress = async () => {
+    const success = await handleLogin(email, password); // Llamamos a la función handleLogin
+    if (success) { 
+        router.push('/home');
+        // Navegamos a HomeScreen si el login es exitoso
+    }
+  };
 
   return (
       <View className="flex-1 bg-[#636AE8]">
@@ -40,7 +51,7 @@ const LoginScreen = () => {
                   />
                   <TouchableOpacity
                       className="bg-[#636AE8] rounded-lg p-3 my-4"
-                      onPress={() => handleLogin(email, password)} // Llama a handleLogin con email y password
+                      onPress={handleLoginPress}
                       disabled={loading}
                   >
                       <Text className="text-center text-white text-lg font-bold">

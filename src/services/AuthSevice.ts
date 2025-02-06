@@ -1,17 +1,21 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api/auth/';
+const API_URL = 'http://192.168.3.205:8080/api/';
 
-interface User {
-    usuario: string;
-    contrasena: string;
-};
 
-export const login = async (usuario: string, contrasena: string) => {
-    const response = await axios.post(API_URL + 'login', {
-        usuario,
-        contrasena,
-    });
-    return response.data;
+export const sendRequest = async (jwtToken: string) => {
+    try {
+        const response = await axios.get(API_URL + 'user', {
+            headers: {
+                Authorization: `Bearer ${jwtToken}`,
+            },
+        });
+        return response.data;
+        console.log(response.data);
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+
 }
 

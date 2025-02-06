@@ -1,13 +1,13 @@
 import axios from "axios";
 import { getAuth } from "firebase/auth";
+import { User } from "../context/user.types";
 
-interface User {
-  uid: string;
-  nombre: string;
-  apellido: string;
-  cargo: string;
-  preferencias: number[];
-}
+// export interface User {
+//   nombre: string;
+//   apellido: string;
+//   cargo: string;
+//   preferencias: number[];
+// }
 
 const API_URL = "http://192.168.3.205:8080/api/user/preferences"; // Ruta en el backend
 
@@ -25,28 +25,16 @@ export const fetchUserPreferences = async () => {
         Authorization: `Bearer ${jwtToken}`, // Enviar el JWT en el header
       },
     });
-    console.log("Respuesta cruda del servidor:", response.data);
+    const responseData = response.data as User; // La aserción de tipo es suficiente
+    console.log("Datos del usuario:", responseData);
+    return responseData; // Retornamos responseData directamente
 
-    // Validamos y mapeamos los datos de forma segura
-    if (response.data && typeof response.data === "object") {
-      const rawData = response.data as Record<string, unknown>; // Trata la respuesta como un objeto dinámico
-
-      const mappedUser: User = {
-        uid: String(rawData.uid ?? ""), // Asegura que sea un string
-        nombre: String(rawData.name ?? ""),
-        apellido: String(rawData.surname ?? ""),
-        cargo: String(rawData.position ?? ""),
-        preferencias: Array.isArray(rawData.preferences) ? rawData.preferences.map(Number) : [], // Convierte a números si es un array
-      };
-
-      return mappedUser;
-
-    } else {
-      console.error("Respuesta del servidor no válida:", response.data);
-      return null;
+  } catch (error: any) {
+    console.error("⛔ Error en la solicitud:", error.message);
+    if (error.response) {
+      console.error("🔴 Código de error HTTP:", error.response.status);
+      console.error("🔴 Respuesta del servidor:", error.response.data);
     }
-  } catch (error) {
-    console.error("Error obteniendo preferencias:", error);
     return null;
   }
 };
