@@ -7,7 +7,7 @@ function VentasRecientes(){
   const [carga,setCarga] = useState(true);
 
   useEffect(()=>{
-    fetch("http://localhost:8080/api/ingreso/mayor-monto")
+    fetch("http://localhost:8080/api/ingresos/max-venta")
     .then(response => response.json())
     .then(data =>{
       console.log("Datos Recibidos: ",data)
