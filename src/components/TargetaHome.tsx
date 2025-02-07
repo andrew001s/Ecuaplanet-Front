@@ -17,15 +17,13 @@ export default function TargetaHome( {nombreCliente,paisCliente,tipoCliente,idPe
             />
           </View>
           <View className="flex-1 pl-10 pr-20">
-            <Text className="font-bold">Cliente:</Text>{' '}
+            <Text className="font-bold">Cliente:</Text>
             <Text>{nombreCliente}</Text>
-            <Text className="font-bold">Tipo de Cliente:</Text>{' '}
+            <Text className="font-bold">Tipo de Cliente:</Text>
             <Text>{tipoCliente}</Text>
             <Text className="font-bold">País:</Text> <Text>{paisCliente}</Text>
-            <Text className="font-bold">Pedido:</Text>{' '}
-            <Text>#{nombreCliente}</Text>
-            <Text className="font-bold">Cliente:</Text>{' '}
-            <Text>{nombreCliente}</Text>
+            <Text className="font-bold">Pedido:</Text>
+            <Text>#{idPedido}</Text>
           </View>
           <View className="absolute top-3 right-3 pt-3">
             <Text className="text-green-500 font-bold">

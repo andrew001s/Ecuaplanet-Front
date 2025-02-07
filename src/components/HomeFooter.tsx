@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import TargetaHome from './TargetaHome';
 import axios from 'axios';
 
-export default function HomeFooter({ingreso = []}) {
+export default function HomeFooter() {
   const [ingresos,setIngresos] = useState([]);
   const [carga,setCarga] = useState(true);
   const fetchIngresos=async()=>{
@@ -28,18 +28,9 @@ export default function HomeFooter({ingreso = []}) {
   }
 
   return (
-    <View>
-      {ingreso.map((item)=>{
-        return(
-        <TargetaHome
-        key={item.idPedido.toString()}
-        nombreCliente={item.nombreCliente}
-        paisCliente={item.paisCliente}
-        tipoCliente={item.tipoCliente}
-        idPedido={item.idPedido}
-        montoTotalVenta={item.montoTotalVenta}
-        />
-      )})}
+    <View className='flex-1 p-3'>
+      <Text></Text>
+      <Text></Text>
     </View>
   );
 }
