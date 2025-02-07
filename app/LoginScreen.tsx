@@ -5,7 +5,6 @@ import { ErrorMessage } from '../src/components/ErrorMessage';
 import { useAuth } from '../src/hooks/useAuth';
 import { useRouter } from 'expo-router';
 
-
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +14,7 @@ const LoginScreen = () => {
   const handleLoginPress = async () => {
     const success = await handleLogin(email, password); 
     if (success) { 
-        router.replace('/ChatbotScreen');
+        router.replace('/HomeTemplate');
     }
   };
 
