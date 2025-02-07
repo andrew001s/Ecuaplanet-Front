@@ -13,6 +13,7 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import BubbleChat from '../components/BubbleChat';
 import { getCultivo } from '../services/fetchGemini';
 import FaqList from '../components/FaqList';
+import { Link } from 'expo-router';
 
 const initialMessages = {
   text: '¡Qué bueno verte de nuevo! ¿Qué te interesaría conocer el día de hoy? 🥳 💸',
@@ -74,6 +75,9 @@ const Chat = () => {
             <TouchableOpacity className="ml-2" onPress={() => sendMessage(value)}>
               <FontAwesome name="send-o" size={24} color="#636AE8FF" />
             </TouchableOpacity>
+            <Link href="navigation/pagetest" className="text-[#636AE8FF]">
+              FAQ
+            </Link>
           </View>
         </View>
       </TouchableWithoutFeedback>

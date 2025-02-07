@@ -1,7 +1,7 @@
 {
   "name": "ecuaplanet-front",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "expo-router/entry",
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -16,6 +16,7 @@
     "axios": "^1.7.9",
     "ecuaplanet-front": "file:",
     "expo": "~52.0.25",
+    "expo-router": "^4.0.17",
     "expo-status-bar": "~2.0.1",
     "https": "^1.0.0",
     "nativewind": "^4.1.23",

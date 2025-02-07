@@ -3,6 +3,7 @@
     "name": "Ecuaplanet-Front",
     "slug": "Ecuaplanet-Front",
     "version": "1.0.0",
+    "scheme": "ecuaplanet-front",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "platforms": ["ios", "android", "web"],
