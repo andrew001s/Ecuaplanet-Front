@@ -1,13 +1,15 @@
+import { AuthProvider } from '../src/context/AuthContext';
 import { View, Text } from 'react-native'
 import React from 'react'
 import { Slot } from 'expo-router';
+import { StatusBar } from 'react-native';
 
 const _layout = () => {
   return (
-    <View>
-      <Text>_layout</Text>
+    <AuthProvider>
+      <StatusBar barStyle='light-content' />
       <Slot />
-    </View>
+    </AuthProvider>
   )
 }
 
