@@ -11,13 +11,13 @@ export default function App() {
     <ScrollView>
       <View className="flex-1">
         <View className="mt-8">
-          <View className="flex-1 justify-center items-center" >
-            <HomeHeader/>
-            <HomeBody/>
+          <View className="flex-1 justify-center items-center">
+            <HomeHeader />
+            <HomeBody />
             <StatusBar style="auto" />
           </View>
         </View>
-        <HomeFooter/>
+        <HomeFooter />
       </View>
     </ScrollView>
   );
