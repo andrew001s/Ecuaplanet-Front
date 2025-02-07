@@ -2,12 +2,7 @@ import { View, Text, Image } from 'react-native';
 import React from 'react';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 //<Text className="text-justify font-normal text-[#9095A0]">{descripcion}</Text>
-export default function TargetaHome() {
-  const nombreCliente = 'Florist Paradise Ltd.';
-  const paisCliente = 'Alemania';
-  const tipoCliente = 'Extranjero';
-  const idPedido = 4;
-  const montoTotalVenta = 180.0;
+export default function TargetaHome( {nombreCliente,paisCliente,tipoCliente,idPedido,montoTotalVenta}) {
   return (
     <View className="flex-1 p-3">
       <Text className="font-semibold text-2xl pl-3">Actividades Recientes</Text>
