@@ -18,9 +18,9 @@ const useAuth = () => {
     try {
         const response = await signInWithEmailAndPassword(auth, email, password);
         const userInfo = await fetchUserPreferences();
-        console.log('Usuario autenticado:', userInfo);
         if (userInfo) {
             login(userInfo);
+            console.log('Sesión iniciada');
             return true;
         } else {
             setError("Error al obtener datos del usuario.");
@@ -45,7 +45,7 @@ const useAuth = () => {
       try {
         setLoading(true);
         await signOut(auth);
-        console.log('Sesión cerrada');
+        console.log('Cerrando sesión...');
         contextLogout();
       } catch (error: any) {
         console.error('Error al cerrar sesión (back):', error.message);

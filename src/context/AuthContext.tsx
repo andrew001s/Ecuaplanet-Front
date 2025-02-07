@@ -52,7 +52,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const logout = async () => {
     try {
-      console.log('Logging out...');
+      console.log('Sesión Cerrada');
       setUser(null); // Limpia el usuario del contexto
       await AsyncStorage.removeItem('user'); // Elimina el usuario persistido
       setIsAuthenticated(false);

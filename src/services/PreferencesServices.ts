@@ -2,7 +2,7 @@ import axios from "axios";
 import { getAuth } from "firebase/auth";
 import { User } from "../constants/user.types";
 
-const API_URL = "http://192.168.3.205:8080/api/user/preferences"; // Ruta en el backend
+const API_URL = "http://192.168.3.205:8080/api/user/preferences"; 
 
 export const fetchUserPreferences = async () => {
   try {
@@ -10,17 +10,15 @@ export const fetchUserPreferences = async () => {
     const user = auth.currentUser;
     if (!user) throw new Error("Usuario no autenticado");
 
-    const jwtToken = await user.getIdToken(); // Obtener el JWT del usuario autenticado
-    console.log("Enviando solicitud al backend con token:", jwtToken); 
-
+    const jwtToken = await user.getIdToken(); 
     const response = await axios.get(API_URL, {
       headers: {
-        Authorization: `Bearer ${jwtToken}`, // Enviar el JWT en el header
+        Authorization: `Bearer ${jwtToken}`,
       },
     });
-    const responseData = response.data as User; // La aserción de tipo es suficiente
+    const responseData = response.data as User; 
     console.log("Datos del usuario:", responseData);
-    return responseData; // Retornamos responseData directamente
+    return responseData; 
 
   } catch (error: any) {
     console.error("⛔ Error en la solicitud:", error.message);
