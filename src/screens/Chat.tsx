@@ -58,7 +58,7 @@ const Chat = () => {
           <Chatheader />
           <View className="flex-1 p-4">
             <BubbleChat messages={messages} isLoading={isLoading} />
-            {showFaq && <FaqList onSelectFaq={(text) => sendMessage(text)} />}
+            {showFaq && <FaqList type='cultivo' onSelectFaq={(text) => sendMessage(text)} />}
           </View>
 
           <View className="flex-row items-center justify-between bg-white p-4 pl-6 pr-6">
