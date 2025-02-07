@@ -22,17 +22,17 @@ import HomeFooter from './src/components/HomeFooter';
 */
 export default function App() {
   return (
-    <FlatList 
-      ListHeaderComponent={
+    <ScrollView>
+      <View className="flex-1">
+        <View className="mt-8">
         <View className="flex-1 justify-center items-center">
-          <HomeHeader/>
-          <HomeBody/>
-          <StatusBar style="auto"/>
+            <HomeHeader />
+            <HomeBody />
+            <StatusBar style="auto" />
+          </View>
         </View>
-      }
-      ListFooterComponent={<HomeFooter/>}
-      data={[]}
-      renderItem={null}
-      />
+        <HomeFooter />
+      </View>
+    </ScrollView>
   );
 }

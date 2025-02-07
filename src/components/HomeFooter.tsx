@@ -10,6 +10,7 @@ function VentasRecientes(){
     fetch("http://localhost:8080/api/ingreso/mayor-monto")
     .then(response => response.json())
     .then(data =>{
+      console.log("Datos Recibidos: ",data)
       setIngresos(data);
       setCarga(false);
     })
@@ -24,22 +25,21 @@ function VentasRecientes(){
 
   return <HomeFooter ingreso={ingresos}/>
 }
-export default function HomeFooter({ingreso}) {
+export default function HomeFooter({ ingreso}) {
+  console.log("Datos en HomeFooter:",ingreso)
   return (
     <View>
-      <FlatList
-        data={ingreso}
-        keyExtractor={(item) => item.idPedido.toString()}
-        renderItem={({item})=>(
-          <TargetaHome
-          nombreCliente={item.nombreCliente}
-          paisCliente={item.paisCliente}
-          tipoCliente={item.tipoCliente}
-          idPedido={item.idPedido}
-          montoTotalVenta={item.montoTotalVenta}
-          />
-        )}
-        nestedScrollEnabled={false}/>
+      {ingreso.map((item)=>{
+        return(
+        <TargetaHome
+        key={item.idPedido.toString()}
+        nombreCliente={item.nombreCliente}
+        paisCliente={item.paisCliente}
+        tipoCliente={item.tipoCliente}
+        idPedido={item.idPedido}
+        montoTotalVenta={item.montoTotalVenta}
+        />
+      )})}
     </View>
   );
 }
