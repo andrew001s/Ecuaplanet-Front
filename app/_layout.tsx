@@ -6,7 +6,7 @@ const _layout = () => {
   return (
     <View>
       <Text>_layout</Text>
-      <slot />
+      <Slot />
     </View>
   )
 }
