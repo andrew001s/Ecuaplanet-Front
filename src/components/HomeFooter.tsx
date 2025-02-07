@@ -29,8 +29,23 @@ export default function HomeFooter() {
 
   return (
     <View className='flex-1 p-3'>
-      <Text></Text>
-      <Text></Text>
+      <Text>Actividades Recientes</Text>
+      <Text>07/02/2025</Text>
+
+      {ingresos.length === 0?(
+        <Text>No hay ventas recientes</Text>
+      ):(
+        ingresos.map((item)=>(
+          <TargetaHome 
+          key={item.idPedido.toString()}
+          nombreCliente={item.nombreCliente}
+          paisCliente={item.paisCliente}
+          tipoCliente={item.tipoCliente}
+          idPedido={item.idPedido}
+          montoTotalVenta={item.montoTotalVenta}
+          />
+        ))
+      )}
     </View>
   );
 }
