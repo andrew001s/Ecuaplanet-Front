@@ -30,6 +30,9 @@ const Chat = () => {
   }, []);
 
   const sendMessage = async () => {
+    if (value === '') {
+      return;
+    }
     if (isLoading) return;
 
     setIsLoading(true);

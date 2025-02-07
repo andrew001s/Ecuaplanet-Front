@@ -41,8 +41,14 @@ const Bubble = ({ item, isLoading }: BubbleProps) => {
               dotRadius={2.5}
             />
           </View>
+        ) : item.text ? (
+          <Text className="text-[#323842FF]">
+            {item.text}
+          </Text>
         ) : (
-          <Text className="text-[#323842FF]">{item.text}</Text>
+          <Text className="text-[#323842FF]">
+            Error, no se pudo cargar el mensaje
+        </Text>
         )}
       </View>
     </View>
