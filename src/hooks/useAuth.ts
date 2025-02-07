@@ -40,6 +40,19 @@ const useAuth = () => {
       setLoading(false);
     }
   };
+    // Función para cerrar sesión
+    const handleLogout = async () => {
+      try {
+        setLoading(true);
+        await signOut(auth);
+        console.log('Sesión cerrada');
+        contextLogout();
+      } catch (error: any) {
+        console.error('Error al cerrar sesión (back):', error.message);
+      }
+    };
+
+return { loading, error, handleLogin, handleLogout  };
 };
 
 export { useAuth };
