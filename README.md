@@ -9,10 +9,10 @@
     <li>Normal Uquillas</li>
 </ul>
 
-
 # React Native Expo Project
 
 ## ✨ Bienvenida
+
 Este proyecto utiliza **React Native** con **Expo** para el desarrollo de aplicaciones móviles multiplataforma. Este documento detalla cómo clonar, instalar, ejecutar el proyecto y seguir las mejores prácticas.
 
 ---
@@ -56,6 +56,7 @@ npm install
 ```bash
 npm start
 ```
+
 Esto abrirá el servidor de desarrollo en tu navegador. Escanea el código QR con la aplicación **Expo Go**.
 
 ### 2. Ejecutar en **Android**:
@@ -63,6 +64,7 @@ Esto abrirá el servidor de desarrollo en tu navegador. Escanea el código QR co
 ```bash
 npm run android
 ```
+
 Asegúrate de tener un emulador Android en ejecución o un dispositivo físico conectado con la depuración USB habilitada.
 
 ### 3. Ejecutar en **iOS** (Mac requerido):
@@ -70,6 +72,7 @@ Asegúrate de tener un emulador Android en ejecución o un dispositivo físico c
 ```bash
 npm run ios
 ```
+
 Esto abrirá el simulador de iOS si Xcode está instalado correctamente.
 
 ### 4. Ejecutar en **Web**:
@@ -77,6 +80,7 @@ Esto abrirá el simulador de iOS si Xcode está instalado correctamente.
 ```bash
 npm run web
 ```
+
 Esto abrirá la aplicación en tu navegador predeterminado.
 
 ---
@@ -102,10 +106,11 @@ root
 ```
 
 ### Convención de Nombres
+
 En este proyecto, seguimos las siguientes convenciones para nombrar archivos y carpetas, con el objetivo de mantener la coherencia y claridad en el código.
 
-1. ***Archivos de Componentes:** PascalCase
-Los archivos que contienen componentes deben utilizar PascalCase, donde cada palabra comienza con una letra mayúscula, sin espacios ni guiones.
+1. **\*Archivos de Componentes:** PascalCase
+   Los archivos que contienen componentes deben utilizar PascalCase, donde cada palabra comienza con una letra mayúscula, sin espacios ni guiones.
 
 Ejemplos:
 
@@ -114,7 +119,7 @@ UserProfile.tsx
 HomeScreen.tsx
 
 2. **Archivos de Funciones o Utilidades:** camelCase
-Los archivos que contienen funciones o utilidades (por ejemplo, funciones de ayuda o hooks personalizados) deben utilizar camelCase, comenzando con una letra minúscula en la primera palabra y con mayúsculas en las siguientes.
+   Los archivos que contienen funciones o utilidades (por ejemplo, funciones de ayuda o hooks personalizados) deben utilizar camelCase, comenzando con una letra minúscula en la primera palabra y con mayúsculas en las siguientes.
 
 Ejemplos:
 
@@ -123,21 +128,21 @@ formatDate.ts
 calculateTotal.ts
 
 3. **Archivos de Estilos:** snake_case
-Para los archivos de estilo, se recomienda el uso de snake_case, separando las palabras con guiones bajos.
+   Para los archivos de estilo, se recomienda el uso de snake_case, separando las palabras con guiones bajos.
 
 Ejemplos:
 
 app_styles.css
 
 4. **Carpetas:** snake_case o kebab-case
-Las carpetas deben seguir snake_case o kebab-case, ya que son fáciles de leer y funcionan bien con las rutas de los archivos.
+   Las carpetas deben seguir snake_case o kebab-case, ya que son fáciles de leer y funcionan bien con las rutas de los archivos.
 
 Ejemplos:
 
 api_component
 
-
 ### ESLint y Prettier
+
 1. Ejecuta el linter para verificar errores:
    ```bash
    npm run lint
@@ -156,10 +161,13 @@ api_component
 Configura tu editor (como VS Code) para ejecutar **ESLint**, y **Prettier** automáticamente al guardar.
 
 ---
+
 ### Extensiones
+
 1. [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
 2. [ESlint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 3. [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+
 ---
 
 ## 🌈 Tailwind CSS
@@ -167,6 +175,7 @@ Configura tu editor (como VS Code) para ejecutar **ESLint**, y **Prettier** auto
 Este proyecto utiliza **Tailwind CSS** con [nativewind](https://www.nativewind.dev/).
 
 ### Uso:
+
 Usa clases de Tailwind en los componentes de React Native:
 
 ```jsx
@@ -174,7 +183,9 @@ import { View, Text } from 'react-native';
 
 export default function App() {
   return (
-    <View className="flex-1 justify-center items-center bg-blue-500"> //Clases de Tailwind
+    <View className="flex-1 justify-center items-center bg-blue-500">
+      {' '}
+      //Clases de Tailwind
       <Text className="text-white text-lg font-bold">Hola, Tailwind!</Text>
     </View>
   );
@@ -218,4 +229,3 @@ Utiliza el formato de **Conventional Commits** para los mensajes de commit:
 **⚠️ Importante ⚠️**: Asegúrte de que todos los commits sigan el formato de **Conventional Commits** y que el código pase las verificaciones de ESLint y Prettier antes de realizar un push.
 
 Recomendamos usar la extensión [Conventional Commits](https://marketplace.visualstudio.com/items?itemName=vivaxy.vscode-conventional-commits) para VS Code para facilitar este proceso.
-

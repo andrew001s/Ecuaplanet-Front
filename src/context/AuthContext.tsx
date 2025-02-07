@@ -13,14 +13,17 @@ interface AuthContextType {
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true); // Inicializa isLoading en true
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const checkAuth = async () => {
-      try { // Envuelve en try-catch para manejar errores
+      try {
+        // Envuelve en try-catch para manejar errores
         const storedAuth = await AsyncStorage.getItem('isAuthenticated');
         if (storedAuth === 'true') {
           setIsAuthenticated(true);
@@ -30,7 +33,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           }
         }
       } catch (error) {
-        console.error("Error checking authentication:", error);
+        console.error('Error checking authentication:', error);
       } finally {
         setIsLoading(false); // Asegura que isLoading se actualice siempre
       }
@@ -39,14 +42,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     checkAuth();
   }, []);
 
-  const login = async (userData: User) => { // Recibe userData
+  const login = async (userData: User) => {
+    // Recibe userData
     try {
       setUser(userData); // Guarda el usuario en el contexto
       await AsyncStorage.setItem('user', JSON.stringify(userData)); // Persiste el usuario
       setIsAuthenticated(true);
       await AsyncStorage.setItem('isAuthenticated', 'true');
     } catch (error) {
-      console.error("Error during login:", error);
+      console.error('Error during login:', error);
     }
   };
 
@@ -59,12 +63,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setIsLoading(false);
       await AsyncStorage.removeItem('isAuthenticated');
     } catch (error) {
-      console.error("Error during logout:", error);
+      console.error('Error during logout:', error);
     }
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout, user, setUser, isLoading }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, login, logout, user, setUser, isLoading }}
+    >
       {children}
     </AuthContext.Provider>
   );
