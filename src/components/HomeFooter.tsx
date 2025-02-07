@@ -2,31 +2,35 @@ import { View, Text, FlatList } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import TargetaHome from './TargetaHome';
 
-function VentasRecientes(){
+export default function HomeFooter({ingreso = []}) {
   const [ingresos,setIngresos] = useState([]);
   const [carga,setCarga] = useState(true);
-
-  useEffect(()=>{
-    fetch("http://localhost:8080/api/ingresos/max-venta")
-    .then(response => response.json())
-    .then(data =>{
-      console.log("Datos Recibidos: ",data)
-      setIngresos(data);
-      setCarga(false);
+  const prueba=async()=>{
+    console.log("prueab async")
+    await fetch("http://localhost:8080/api/ingresos/max-venta",{
+      method: "GET"
     })
-    .catch(error =>{
-      console.error("Error al obtener los datos",error)
-      setCarga(false);
+    .then(response => response.json())
+    .then(data => {
+        console.log('Éxito:', data);
+    })
+    .catch((error) => {
+      if (error.response) {
+        console.error('Error del servidor:', error.response.data);
+    } else if (error.request) {
+        console.error('No se recibió respuesta del servidor.');
+    } else {
+        console.error('Error al configurar la solicitud:', error);
+    }
     });
+  }
+  useEffect(()=>{
+    prueba()
   },[]);
   if(carga){
     return <Text>Cargando...</Text>
   }
 
-  return <HomeFooter ingreso={ingresos}/>
-}
-export default function HomeFooter({ ingreso}) {
-  console.log("Datos en HomeFooter:",ingreso)
   return (
     <View>
       {ingreso.map((item)=>{
