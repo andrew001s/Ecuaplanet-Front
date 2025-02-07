@@ -38,7 +38,8 @@ export default function HomeFooter({ingreso}) {
           idPedido={item.idPedido}
           montoTotalVenta={item.montoTotalVenta}
           />
-        )}/>
+        )}
+        nestedScrollEnabled={false}/>
     </View>
   );
 }

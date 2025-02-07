@@ -1,14 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Material from '@expo/vector-icons/build/MaterialCommunityIcons';
 import './global.css';
 import HomeBody from './src/components/Home';
 import HomeHeader from './src/components/HomeHead';
 import HomeFooter from './src/components/HomeFooter';
 
-export default function App() {
-  return (
-    <ScrollView>
+/*
+  <ScrollView>
       <View className="flex-1">
         <View className="mt-8">
           <View className="flex-1 justify-center items-center">
@@ -20,5 +19,20 @@ export default function App() {
         <HomeFooter />
       </View>
     </ScrollView>
+*/
+export default function App() {
+  return (
+    <FlatList 
+      ListHeaderComponent={
+        <View className="flex-1 justify-center items-center">
+          <HomeHeader/>
+          <HomeBody/>
+          <StatusBar style="auto"/>
+        </View>
+      }
+      ListFooterComponent={<HomeFooter/>}
+      data={[]}
+      renderItem={null}
+      />
   );
 }
