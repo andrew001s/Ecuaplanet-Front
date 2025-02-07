@@ -28,7 +28,7 @@ export default function HomeFooter() {
   }
 
   return (
-    <View className='flex-1 p-3'>
+    <View>
       <Text>Actividades Recientes</Text>
       <Text>07/02/2025</Text>
 
