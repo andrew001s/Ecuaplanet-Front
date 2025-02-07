@@ -1,5 +1,5 @@
-import { ActivityIndicator, FlatList, Text, View } from 'react-native';
-import React, { useEffect, useRef, useState } from 'react';
+import { FlatList } from 'react-native';
+import React, { useEffect, useRef } from 'react';
 import Bubble from './Bubble';
 
 interface BubbleChatProps {
