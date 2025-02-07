@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@expo/metro-runtime": "~4.0.1",
+    "axios": "^1.7.9",
     "ecuaplanet-front": "file:",
     "expo": "~52.0.25",
     "expo-status-bar": "~2.0.1",
