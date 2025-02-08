@@ -13,11 +13,11 @@ const FaqList = ({ onSelectFaq }: { onSelectFaq: (text: string) => void }) => {
       {initialFaqCultivo.text.map((item) => (
         <TouchableOpacity
           key={generateKey(item)}
-          className="bg-[#DEE1E6FF] m-2 border border-[#b5bac4] border-solid pr-6 pl-6 pt-3 pb-3 shadow-sm rounded-[16px]"
+          className="bg-[#FFFFFF96] m-0.5 border border-[#999DF080] border-solid pr-6 pl-6 pt-3 pb-3 rounded-[6px]"
           style={{ maxWidth: '90%', flexShrink: 1 }}
           onPress={() => onSelectFaq(item)}
         >
-          <Text className="text-[#323842FF]">{item}</Text>
+          <Text className="text-black">{item}</Text>
         </TouchableOpacity>
       ))}
     </View>
