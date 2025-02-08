@@ -30,7 +30,6 @@ export default function HomeFooter() {
   return (
     <View>
       <Text>Actividades Recientes</Text>
-      <Text>07/02/2025</Text>
 
       {ingresos.length === 0?(
         <Text>No hay ventas recientes</Text>
