@@ -34,7 +34,7 @@ const LoginScreen = () => {
                   <Text className="text-2xl text-center my-4 font-bold">Ingresar</Text>
                   <Text className="text-lg text-start my-3 font-bold">Email</Text>
                   <TextInput
-                      className="rounded-xl text-lg border border-gray-300 my-2 px-4"
+                      className="rounded-xl text-lg border border-gray-300 my-2 p-4"
                       placeholder="Email"
                       value={email}
                       onChangeText={setEmail}
@@ -42,7 +42,7 @@ const LoginScreen = () => {
                   />
                   <Text className="text-lg text-start py-2 font-bold">Contraseña</Text>
                   <TextInput
-                      className="rounded-xl text-lg border border-gray-300 my-2 px-4"
+                      className="rounded-xl text-lg border border-gray-300 my-2 p-4"
                       placeholder="Contraseña"
                       value={password}
                       onChangeText={setPassword}
