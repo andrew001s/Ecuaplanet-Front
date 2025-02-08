@@ -9,7 +9,7 @@ const FaqList = ({ onSelectFaq }: { onSelectFaq: (text: string) => void }) => {
   const generateKey = (message: string) => `${message}-${Math.random().toString(36).substr(2, 9)}`;
 
   return (
-    <View className="flex-col mb-4 justify-start pr-2 items-start">
+    <View className="flex-col mb-4 justify-start pr-2 items-end">
       {initialFaqCultivo.text.map((item) => (
         <TouchableOpacity
           key={generateKey(item)}
