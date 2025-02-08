@@ -14,9 +14,11 @@ const BubbleChat = ({ messages, isLoading }: BubbleChatProps) => {
   const flatListRef = useRef<FlatList>(null);
 
   useEffect(() => {
-    if (messages.length > 0) {
-      flatListRef.current?.scrollToEnd({ animated: true });
-    }
+    const timeout = setTimeout(() => {
+      flatListRef.current?.scrollToOffset({ offset: 9999, animated: true });
+    }, 100);
+
+    return () => clearTimeout(timeout);
   }, [messages]);
 
   return (
