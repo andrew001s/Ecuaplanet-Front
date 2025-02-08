@@ -2,25 +2,28 @@ import { View, Text, FlatList } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import TargetaHome from './TargetaHome';
 import axios from 'axios';
+import { fetchCardInfo } from '../services/TargetasServices';
+import { Card } from '../constants/card.types';
+
+interface Ingreso{
+  nombreCliente:string
+  paisCliente:string
+  tipoCliente:string
+  idPedido:number
+  montoTotalVenta:number
+}
 
 export default function HomeFooter() {
-  const [ingresos,setIngresos] = useState([]);
+  const [ingresos,setIngresos] = useState<Card[]>([]);
   const [carga,setCarga] = useState(true);
-  const fetchIngresos=async()=>{
-    console.log("Llamado a la API...");
-    try{
-      const response = await axios.get ("http://192.168.100.35:8080/api/ingresos/max-venta");
-      console.log("Datos recibidos:", response.data)
-      setIngresos(response.data)
-    }catch(error){
-      console.error("Error al obtener datos",error.message)
-    }finally{
-      setCarga(false);
-    }
-  };
 
   useEffect(() => {
-    fetchIngresos();
+    const obtenerDatos = async() =>{
+      const datos = await fetchCardInfo();
+      setIngresos(datos);
+      setCarga(false);
+    };
+    obtenerDatos();
   }, []);
 
   if (carga) {

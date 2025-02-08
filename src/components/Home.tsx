@@ -9,15 +9,6 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 export default function HomeBody() {
-  const flor = 'Claveles';
-  const descripcion =
-    'Los claveles, con su vibrante variedad de colores y alta resistencia, se posicionan como la flor favorita del mercado. Su versatilidad en arreglos y celebraciones respalda su liderato en ventas.';
-  const ingreso = 3000;
-  const egreso = 6000;
-  const fecha = '01/02/2025';
-  //bg-[#636AE8]py-[90px] px-10 rounded-3xl shadow-lg 5-[180px]
-  //bg-[#22CCB2] ventas: bg-[#22CCB2] bg-emerald-500 py-8 px-10 rounded-3xl mb-6 w-[180px] shadow-lg
-  //produccion:bg-[#7F55E0] py-8 px-8 rounded-3xl mb-2 w-[180px] shadow-lg
   return (
     <ScrollView>
       <View className="flex flex-row items-start justify-between pr-4 pl-4">
