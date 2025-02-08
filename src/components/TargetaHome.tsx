@@ -6,7 +6,7 @@ export default function TargetaHome( {nombreCliente,paisCliente,tipoCliente,idPe
   return (
     <View className="flex-1 p-3">
       <View>
-        <View className="rounded-3xl border flex-row m-5 p-3 items-center justify-between relative border-[#9095A0]">
+        <View className="rounded-3xl border flex-row p-3 items-center justify-between relative border-[#9095A0]">
           <View className="absolute top-3 left-3 pt-3">
             <MaterialCommunityIcons
               name="arrow-bottom-right-thin-circle-outline"
@@ -15,10 +15,8 @@ export default function TargetaHome( {nombreCliente,paisCliente,tipoCliente,idPe
             />
           </View>
           <View className="flex-1 pl-10 pr-20">
-            <Text className="font-bold">Cliente:</Text>
-            <Text>{nombreCliente}</Text>
-            <Text className="font-bold">Tipo de Cliente:</Text>
-            <Text>{tipoCliente}</Text>
+            <Text className="font-bold">Cliente: <Text className="font-normal">{nombreCliente}</Text></Text>
+            <Text className="font-bold">Tipo de Cliente: <Text className="font-normal">{tipoCliente}</Text></Text>
             <Text className="font-bold">País: <Text className='font-normal'>{paisCliente}</Text></Text> 
             <Text className="font-bold">Pedido: <Text className='font-normal'>#{idPedido}</Text></Text>
           </View>
