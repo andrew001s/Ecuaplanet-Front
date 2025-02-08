@@ -2,7 +2,6 @@ import {
   ScrollView,
   Text,
   View,
-  StyleSheet,
   TouchableHighlight,
 } from 'react-native';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
