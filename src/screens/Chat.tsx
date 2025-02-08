@@ -55,14 +55,14 @@ const Chat = () => {
       className="flex-1"
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View className="flex-1">
+        <View className="flex-1 bg-[#F3F4F6FF]">
           <Chatheader />
           <View className="flex-1 p-4">
             <BubbleChat messages={messages} isLoading={isLoading} />
             {showFaq && <FaqList onSelectFaq={(text) => sendMessage(text)} />}
           </View>
 
-          <View className="flex-row items-center justify-between bg-white p-4 pl-6 pr-6">
+          <View className="flex-row items-center justify-between  p-4 pl-6 pr-6">
             <TextInput
               className="flex-1 border border-[#BCC1CAFF] border-solid outline-none p-2 pr-4 pl-4 rounded-[18px]"
               placeholder="Escribe un mensaje..."
@@ -72,12 +72,9 @@ const Chat = () => {
               numberOfLines={4}
               textAlignVertical="top"
             />
-            <TouchableOpacity className="ml-2" onPress={() => sendMessage(value)}>
+            <TouchableOpacity className="ml-2 " onPress={() => sendMessage(value)}>
               <FontAwesome name="send-o" size={24} color="#636AE8FF" />
             </TouchableOpacity>
-            <Link href="navigation/pagetest" className="text-[#636AE8FF]">
-              FAQ
-            </Link>
           </View>
         </View>
       </TouchableWithoutFeedback>
