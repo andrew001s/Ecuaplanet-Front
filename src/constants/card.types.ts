@@ -1,8 +1,7 @@
 export interface Card{
     nombreCliente:string
     paisCliente:string
-    tipoCliente:string
-    idPedido:number
+    fechaVenta:Date
     montoTotalVenta:number
   }
   

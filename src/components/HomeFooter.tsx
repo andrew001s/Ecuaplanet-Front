@@ -8,8 +8,7 @@ import { Card } from '../constants/card.types';
 interface Ingreso{
   nombreCliente:string
   paisCliente:string
-  tipoCliente:string
-  idPedido:number
+  fechaVenta:Date
   montoTotalVenta:number
 }
 
@@ -37,13 +36,12 @@ export default function HomeFooter() {
       {ingresos.length === 0?(
         <Text>No hay ventas recientes</Text>
       ):(
-        ingresos.map((item)=>(
+        ingresos.map((item,index)=>(
           <TargetaHome 
-          key={item.idPedido.toString()}
+          key={`venta-${index}`}
           nombreCliente={item.nombreCliente}
           paisCliente={item.paisCliente}
-          tipoCliente={item.tipoCliente}
-          idPedido={item.idPedido}
+          fechaVenta={item.fechaVenta}
           montoTotalVenta={item.montoTotalVenta}
           />
         ))

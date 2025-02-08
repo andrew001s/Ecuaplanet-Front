@@ -3,7 +3,6 @@ import { View, Text, Image,TouchableHighlight } from 'react-native';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useAuth } from '../hooks/useAuth';
 import { useRouter } from 'expo-router';
-
 interface HomeHeaderProps{
   nombre: String;
   apellido: String;

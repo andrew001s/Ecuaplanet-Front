@@ -1,19 +1,19 @@
-import {
-  ScrollView,
-  Text,
-  View,
-  TouchableHighlight,
-} from 'react-native';
+import { ScrollView, Text, View, TouchableHighlight} from 'react-native';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import { useRouter } from 'expo-router';
 
 export default function HomeBody() {
+  const router=useRouter();
+  const handleChatPress = (categoria:string)=>{
+      router.push(`/Chat&&${categoria}`)
+  };
   return (
     <ScrollView>
       <View className="flex flex-row items-start justify-between pr-4 pl-4">
         <TouchableHighlight
           className="bg-[#636AE8] py-[85px] px-10 rounded-3xl shadow-lg w-[170px]"
-          onPress={() => alert('Listo el botón de cultivo')}
+          onPress={() => handleChatPress("cultivo")}/*Aqui se redirrecionaria a la pantalla del chat: /Chat&&cultivo*/
           underlayColor={'#4C58D1'}
         >
           <View className="justify-center text-center items-center">
@@ -30,7 +30,7 @@ export default function HomeBody() {
         <View className="flex flex-col items-center ml-5">
           <TouchableHighlight
             className="bg-[#22CCB2] py-8 px-10 rounded-3xl mb-3 w-[150px] shadow-lg"
-            onPress={() => alert('Listo el botón de ventas')}
+            onPress={() => handleChatPress("ventas")}/*Aqui se redirrecionaria a la pantalla del chat: /Chat&&ventas*/
             underlayColor="#1A9E87"
           >
             <View className="justify-center text-center items-center">
@@ -42,7 +42,7 @@ export default function HomeBody() {
           </TouchableHighlight>
           <TouchableHighlight
             className="bg-[#7F55E0] py-8 px-8 rounded-3xl mb-2 w-[150px] shadow-lg "
-            onPress={() => alert('Listo el botón de Producción')}
+            onPress={() => handleChatPress("produccion")} /*Aqui se redirrecionaria a la pantalla del chat: /Chat&&produccion*/
             underlayColor="#6A4EBD"
           >
             <View className="justify-center text-center items-center">

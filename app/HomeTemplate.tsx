@@ -13,16 +13,7 @@ function HomeTemplate() {
   const { user } = useContext(AuthContext);
   const { handleLogout } = useAuth();
   const router = useRouter();
-
-  const handleLogoutPress = async () => {
-    try {
-      await handleLogout();
-      router.replace('/LoginScreen');
-    } catch (error) {
-      console.error('Error al cerrar sesión:', error);
-    }
-  };
-
+  
   return (
     <ScrollView>
       <View className="flex-1">
