@@ -14,7 +14,7 @@ import BubbleChat from '../components/BubbleChat';
 
 import FaqList from '../components/FaqList';
 import { getCultivo } from '../services/fetchGemini';
-import { getChat } from '../services/fetchChatHistory';
+import { getChat, postChat } from '../services/fetchChatHistory';
 
 const initialMessages = {
   text: '¡Qué bueno verte de nuevo! ¿Qué te interesaría conocer el día de hoy? 🥳 💸',
@@ -53,17 +53,20 @@ const Chat = () => {
     if (isLoading) return;
 
     setIsLoading(true);
+    const userMessage = { id: 'andres', message: messageText, sender: 'user', timestamp: new Date().toISOString() };
     setMessages((prev) => [...prev, { text: messageText, role: 'user' }]);
     setValue('');
     setShowFaq(false);
-
+    postChat(userMessage);
+    
+    
     const message = await getCultivo(messageText);
-
+    const botMessage = { id: 'andres', message: message, sender: 'bot', timestamp: new Date().toISOString() };
     setMessages((prevMessages) => [
       ...prevMessages,
       { text: message, role: 'bot' },
     ]);
-
+    postChat(botMessage);
     setIsLoading(false);
   };
 
