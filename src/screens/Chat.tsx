@@ -11,9 +11,10 @@ import React, { useEffect, useState } from 'react';
 import Chatheader from '../components/Chatheader';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import BubbleChat from '../components/BubbleChat';
-import { getCultivo } from '../services/fetchGemini';
+
 import FaqList from '../components/FaqList';
-import { Link } from 'expo-router';
+import { getCultivo } from '../services/fetchGemini';
+import { getChat } from '../services/fetchChatHistory';
 
 const initialMessages = {
   text: '¡Qué bueno verte de nuevo! ¿Qué te interesaría conocer el día de hoy? 🥳 💸',
@@ -27,8 +28,25 @@ const Chat = () => {
   const [showFaq, setShowFaq] = useState(true);
 
   useEffect(() => {
-    setMessages([initialMessages]);
+    const fetchData = async () => {
+      const messages: ChatMessage[] = await getChat('andres'); 
+      if (messages.length === 0) {
+        setMessages([initialMessages]);
+        setShowFaq(true);
+        return;
+      }else {
+        const formattedMessages = messages.map((msg) => ({
+          text: msg.message,
+          role: msg.sender === "bot" ? "bot" : "user" 
+        }));
+        setShowFaq(false);
+        setMessages(formattedMessages); 
+      }
+    };
+    
+    fetchData();
   }, []);
+
 
   const sendMessage = async (messageText: string) => {
     if (!messageText.trim()) return;

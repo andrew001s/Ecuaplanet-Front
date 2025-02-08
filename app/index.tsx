@@ -4,6 +4,8 @@ import { useRouter, useSegments, Redirect } from "expo-router"; // Importa useSe
 import { AuthContext } from '../src/context/AuthContext';
 import { View, ActivityIndicator, Text } from 'react-native';
 import LoadingScreen from "../src/components/LoadingScreen";
+import ChatLayout from "../src/components/layout/ChatLayout";
+import Chat from "../src/screens/Chat";
 
 
 export default function Index() {
@@ -11,21 +13,9 @@ export default function Index() {
   const { isAuthenticated } = useContext(AuthContext); // Obtenemos si el usuario está autenticado
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    // Simular pantalla de carga por 1 segundo
-    const timer = setTimeout(() => {
-      if (isAuthenticated) {
-        router.replace("/HomeScreen"); // Si está autenticado, va al Home
-      } else {
-        router.replace("/LoginScreen"); // Si NO está autenticado, va al Login
-      }
-    }, 1200);
-
-    return () => clearTimeout(timer); // Limpiar el timer al desmontar
-  }, [isAuthenticated]);
-
-  if (loading) {
-    return <LoadingScreen />;
-  }
-  return null;
+  return (
+    <ChatLayout>
+      <Chat />
+    </ChatLayout>
+  );
 };
