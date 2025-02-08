@@ -29,7 +29,7 @@ export default function HomeFooter() {
 
   return (
     <View>
-      <Text>Actividades Recientes</Text>
+      <Text className="font-bold text-2xl m-4">Actividades Recientes</Text>
 
       {ingresos.length === 0?(
         <Text>No hay ventas recientes</Text>

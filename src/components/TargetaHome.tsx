@@ -6,7 +6,7 @@ export default function TargetaHome( {nombreCliente,paisCliente,tipoCliente,idPe
   return (
     <View className="flex-1 p-3">
       <View>
-        <View className="rounded-3xl border flex-row p-3 items-center justify-between relative border-[#9095A0]">
+        <View className="rounded-3xl border flex-row m-1 p-3 items-center justify-between relative border-[#9095A0]">
           <View className="absolute top-3 left-3 pt-3">
             <MaterialCommunityIcons
               name="arrow-bottom-right-thin-circle-outline"
