@@ -1,22 +1,24 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Material from '@expo/vector-icons/build/MaterialCommunityIcons';
 import './global.css';
+import HomeBody from './src/components/Home';
+import HomeHeader from './src/components/HomeHead';
+import HomeFooter from './src/components/HomeFooter';
 
 export default function App() {
   return (
-    <View style={styles.container} className="bg-red-500">
-      <Text>Open up App.js to start working on your app!</Text>
-      <Material name="flower-tulip" size={24} color="black" />
-      <StatusBar style="auto" />
-    </View>
+    <ScrollView>
+      <View className="flex-1">
+        <View className="mt-8">
+        <View className="flex-1 justify-center items-center">
+            <HomeHeader />
+            <HomeBody />
+            <StatusBar style="auto" />
+          </View>
+        </View>
+        <HomeFooter />
+      </View>
+    </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-  },
-});
