@@ -1,12 +1,11 @@
 // index.tsx
-import { useEffect, useState, useContext } from "react";
-import { useRouter, useSegments, Redirect } from "expo-router"; // Importa useSegments
+import { useEffect, useState, useContext } from 'react';
+import { useRouter, useSegments, Redirect } from 'expo-router'; // Importa useSegments
 import { AuthContext } from '../src/context/AuthContext';
 import { View, ActivityIndicator, Text } from 'react-native';
-import LoadingScreen from "../src/components/LoadingScreen";
-import ChatLayout from "../src/components/layout/ChatLayout";
-import Chat from "../src/screens/Chat";
-
+import LoadingScreen from '../src/components/LoadingScreen';
+import ChatLayout from '../src/components/layout/ChatLayout';
+import Chat from '../src/screens/Chat';
 
 export default function Index() {
   const router = useRouter();
@@ -18,4 +17,4 @@ export default function Index() {
       <Chat />
     </ChatLayout>
   );
-};
+}

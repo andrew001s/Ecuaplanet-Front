@@ -1,7 +1,6 @@
 interface ChatMessage {
-    id: string;
-    message: string;
-    sender: string;
-    timestamp: string;
-  }
-  
+  id: string;
+  message: string;
+  sender: string;
+  timestamp: string;
+}

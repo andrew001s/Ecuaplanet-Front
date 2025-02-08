@@ -18,7 +18,7 @@ const BubbleChat = ({ messages, isLoading }: BubbleChatProps) => {
       flatListRef.current?.scrollToOffset({ offset: 9999, animated: true });
     }, 100);
 
-    return () => clearTimeout(timeout); 
+    return () => clearTimeout(timeout);
   }, [messages]);
 
   return (
