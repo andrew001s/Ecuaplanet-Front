@@ -34,13 +34,12 @@ export default function HomeFooter() {
       {ingresos.length === 0?(
         <Text>No hay ventas recientes</Text>
       ):(
-        ingresos.map((item)=>(
-          <TargetaHome 
-          key={item.idPedido.toString()}
+        ingresos.map((item,index)=>(
+          <TargetaHome
+          key={`venta-${index}`} 
           nombreCliente={item.nombreCliente}
           paisCliente={item.paisCliente}
-          tipoCliente={item.tipoCliente}
-          idPedido={item.idPedido}
+          fechaVenta={item.fechaVenta}
           montoTotalVenta={item.montoTotalVenta}
           />
         ))
