@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect, useRef} from 'react';
 import { useAuth } from '../src/hooks/useAuth';
-import { View, Text, Pressable, ScrollView } from 'react-native';
+import { View,ScrollView } from 'react-native';
 import { AuthContext } from '../src/context/AuthContext';
 import { useRouter } from 'expo-router';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
