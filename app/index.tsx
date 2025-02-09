@@ -16,7 +16,7 @@ export default function Index() {
       if (isAuthenticated) {
         router.replace('/HomeTemplate'); // Si está autenticado, va al Home
       } else {
-        router.replace('/LoginScreen'); // Si NO está autenticado, va al Login
+        router.replace('/HomeTemplate'); // Si NO está autenticado, va al Login
       }
     }, 1200);
 
