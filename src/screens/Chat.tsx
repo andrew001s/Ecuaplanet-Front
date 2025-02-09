@@ -22,56 +22,46 @@ const initialMessages = {
 };
 
 const Chat = () => {
-  const [messages, setMessages] = useState<{ text: string; role: string }[]>(
-    [],
-  );
+  const [messages, setMessages] = useState<{ text: string; role: string }[]>([]);
   const [value, setValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showFaq, setShowFaq] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      const messages: ChatMessage[] = await getChat('andres');
+      const messages: ChatMessage[] = await getChat('andres'); 
       if (messages.length === 0) {
         setMessages([initialMessages]);
         setShowFaq(true);
         return;
-      } else {
+      }else {
         const formattedMessages = messages.map((msg) => ({
           text: msg.message,
-          role: msg.sender === 'bot' ? 'bot' : 'user',
+          role: msg.sender === "bot" ? "bot" : "user" 
         }));
         setShowFaq(false);
-        setMessages(formattedMessages);
+        setMessages(formattedMessages); 
       }
     };
-
+    
     fetchData();
   }, []);
+
 
   const sendMessage = async (messageText: string) => {
     if (!messageText.trim()) return;
     if (isLoading) return;
 
     setIsLoading(true);
-    const userMessage = {
-      id: 'andres',
-      message: messageText,
-      sender: 'user',
-      timestamp: new Date().toISOString(),
-    };
+    const userMessage = { id: 'andres', message: messageText, sender: 'user', timestamp: new Date().toISOString() };
     setMessages((prev) => [...prev, { text: messageText, role: 'user' }]);
     setValue('');
     setShowFaq(false);
     postChat(userMessage);
-
+    
+    
     const message = await getCultivo(messageText);
-    const botMessage = {
-      id: 'andres',
-      message: message,
-      sender: 'bot',
-      timestamp: new Date().toISOString(),
-    };
+    const botMessage = { id: 'andres', message: message, sender: 'bot', timestamp: new Date().toISOString() };
     setMessages((prevMessages) => [
       ...prevMessages,
       { text: message, role: 'bot' },
@@ -103,10 +93,7 @@ const Chat = () => {
               numberOfLines={4}
               textAlignVertical="top"
             />
-            <TouchableOpacity
-              className="ml-2 "
-              onPress={() => sendMessage(value)}
-            >
+            <TouchableOpacity className="ml-2 " onPress={() => sendMessage(value)}>
               <FontAwesome name="send-o" size={24} color="#636AE8FF" />
             </TouchableOpacity>
           </View>

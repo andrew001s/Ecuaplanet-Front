@@ -1,6 +1,6 @@
 // index.tsx
-import { useEffect, useState, useContext } from 'react';
-import { useRouter, useSegments, Redirect } from 'expo-router'; // Importa useSegments
+import { useEffect, useState, useContext } from "react";
+import { useRouter, useSegments, Redirect } from "expo-router"; // Importa useSegments
 import { AuthContext } from '../src/context/AuthContext';
 import { View, ActivityIndicator, Text } from 'react-native';
 import LoadingScreen from '../src/components/LoadingScreen';

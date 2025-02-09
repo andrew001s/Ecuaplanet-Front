@@ -42,15 +42,13 @@ const Bubble = ({ item, isLoading }: BubbleProps) => {
             />
           </View>
         ) : item.text ? (
-          <Text
-            className={`${item.role === 'user' ? 'text-white' : 'text-[#323842FF]'} text-lg`}
-          >
+          <Text className={`${item.role === 'user' ? 'text-white' : 'text-[#323842FF]'} text-lg`}>
             {item.text}
           </Text>
         ) : (
           <Text className="text-[#323842FF]">
             Error, no se pudo cargar el mensaje
-          </Text>
+        </Text>
         )}
       </View>
     </View>
