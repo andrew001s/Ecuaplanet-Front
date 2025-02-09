@@ -31,9 +31,9 @@ export default function HomeBody() {
   
     const preferencias = user?.preferencias || [0, 0, 0];
     const categorias = [
-      { nombre: "Cultivo", valor: preferencias[0], clase: cardClasses.cultivo, icono: iconos.cultivo },
-      { nombre: "Producción", valor: preferencias[1], clase: cardClasses.produccion, icono: iconos.produccion },
-      { nombre: "Ventas", valor: preferencias[2], clase: cardClasses.ventas, icono: iconos.ventas },
+      { nombre: "Cultivo", valor: preferencias[0], clase: cardClasses.cultivo, icono: iconos.cultivo, colorSecundario: "#6A4EBD" },
+      { nombre: "Producción", valor: preferencias[1], clase: cardClasses.produccion, icono: iconos.produccion, colorSecundario: "#2B7BC1" },
+      { nombre: "Ventas", valor: preferencias[2], clase: cardClasses.ventas, icono: iconos.ventas, colorSecundario: "#1A9E87" },
     ];
     categorias.sort((a, b) => b.valor - a.valor);
 
@@ -43,7 +43,7 @@ export default function HomeBody() {
         <TouchableHighlight
           className={`${categorias[0].clase} flex-1 justify-center rounded-3xl`}
           onPress={() => handleChatPress(categorias[0].nombre.toLowerCase())}
-          underlayColor={'#6A4EBD'}
+          underlayColor={categorias[0].colorSecundario}
         >
           <View className="justify-center items-center">
             {categorias[0].icono}
@@ -58,7 +58,7 @@ export default function HomeBody() {
           <TouchableHighlight
             className={`${categorias[1].clase} flex-1 justify-center rounded-3xl mb-1`}
             onPress={() => handleChatPress(categorias[1].nombre.toLowerCase())}
-            underlayColor="#1A9E87"
+            underlayColor={categorias[1].colorSecundario}
           >
             <View className="justify-center items-center">
               {categorias[1].icono}
@@ -71,7 +71,7 @@ export default function HomeBody() {
           <TouchableHighlight
             className={`${categorias[2].clase} flex-1 justify-center rounded-3xl`}
             onPress={() => handleChatPress(categorias[2].nombre.toLowerCase())}
-            underlayColor="#2B7BC1"
+            underlayColor={categorias[2].colorSecundario}
           >
             <View className="justify-center items-center">
               {categorias[2].icono}
