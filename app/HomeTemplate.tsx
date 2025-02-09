@@ -20,12 +20,14 @@ function HomeTemplate() {
       <View className="flex-1">
         <View className="mt-8">
           <View className="flex-1 px-6 pt-4 justify-center items-center">
+            <StatusBar style="auto"/>
             <HomeHeader nombre={user?.nombre} apellido={user?.apellido}/>
             <HomeBody/>
-            <StatusBar style="auto"/>
-          </View>         
+          </View>  
+          <View className='flex-1 px-6'>
+            <HomeFooter/>
+          </View>
         </View>
-        <HomeFooter/>
       </View>
     </ScrollView>
   );
