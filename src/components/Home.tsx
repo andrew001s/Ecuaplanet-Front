@@ -14,7 +14,6 @@ export default function HomeBody() {
       router.push(`/Chat&&${categoria}`)
   };
 
-    // Mapeo de clases de Tailwind para los colores
     const cardClasses = {
       cultivo: "bg-[#7f55e0]",
       produccion: "bg-[#379AE6]",
