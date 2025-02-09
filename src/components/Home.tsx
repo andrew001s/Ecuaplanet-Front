@@ -6,7 +6,7 @@ import { useRouter } from 'expo-router';
 export default function HomeBody() {
   const router=useRouter();
   const handleChatPress = (categoria:string)=>{
-      router.push(`/Chat&&${categoria}`)
+      router.push(`/ChatTemplate?category=${categoria}`);
   };
   return (
     <ScrollView>
