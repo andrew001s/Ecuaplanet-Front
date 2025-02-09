@@ -33,6 +33,7 @@ export default function TargetaHome( {nombreCliente,paisCliente,fechaVenta,monto
               name="arrow-bottom-right-thin-circle-outline"
               size={30}
               color="green"
+              style={{ transform: [{ rotate: '270deg' }] }}
             />
           </View>
 

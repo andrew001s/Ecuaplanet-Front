@@ -42,20 +42,20 @@ const LoginScreen = () => {
             </View>
             <View className="flex-1 bg-white rounded-t-3xl">
                 <View className="px-12 py-8">
-                    <Text className="text-2xl text-center my-4 font-bold">Ingresar</Text>
-                    <Text className="text-lg text-start my-3 font-bold">Email</Text>
+                    <Text className="text-2xl text-center mb-7 font-bold">Ingresar</Text>
+                    <Text className="text-lg text-start my-1 font-bold">E-mail</Text>
                     <TextInput
-                        className="text-lg border-b border-gray-300 focus:border-b-[#379AE6] my-2 px-4"
+                        className="text-lg border-b border-gray-300 focus:border-b-[#379AE6] px-4"
                         placeholder="user@example.com"
                         value={email}
                         onChangeText={setEmail}
                         autoCapitalize="none"
                     />
-                    <Text className="text-lg text-start py-2 font-bold">Contraseña</Text>
+                    <Text className="text-lg text-start mt-5 py-2 font-bold">Contraseña</Text>
                     <View className="relative"> 
                         <TextInput
-                            className="text-lg border-b border-gray-300 focus:border-b-[#379AE6] my-2 px-4 pr-10" 
-                            placeholder="Contraseña"
+                            className="text-lg border-b border-gray-300 focus:border-b-[#379AE6] px-4 pr-10" 
+                            placeholder="Tu contraseña"
                             value={password}
                             onChangeText={setPassword}
                             secureTextEntry={!isPasswordVisible}
@@ -63,13 +63,13 @@ const LoginScreen = () => {
                         />
                         <TouchableOpacity 
                             onPress={togglePasswordVisibility} 
-                            className="absolute right-5 top-6"
+                            className="absolute right-5 top-3"
                         >
                             <Ionicons name={isPasswordVisible ? "eye-off" : "eye"} size={24} color="gray" />
                         </TouchableOpacity>
                     </View>
                     <TouchableOpacity
-                        className="bg-[#636AE8] rounded-lg p-3 my-4"
+                        className="bg-[#636AE8] rounded-xl p-3 mt-10"
                         onPress={handleLoginPress}
                         disabled={loading}
                     >

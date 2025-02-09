@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { ScrollView, Text, View, TouchableHighlight, Pressable, TouchableOpacity} from 'react-native';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { AuthContext } from '../context/AuthContext';
@@ -8,10 +7,28 @@ import { useRouter } from 'expo-router';
 
 export default function HomeBody() {
   const router=useRouter();
-  const { user } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   
   const handleChatPress = (categoria:string)=>{
-      router.push(`/Chat&&${categoria}`)
+    const newPreferencias = [...user?.preferencias];
+
+    // Aumentar la preferencia correspondiente dependiendo de la categoría
+    if (categoria === "cultivo") {
+      newPreferencias[0] += 1;
+    } else if (categoria === "produccion") {
+      newPreferencias[1] += 1;
+    } else if (categoria === "ventas") {
+      newPreferencias[2] += 1;
+    }
+
+    // Actualizar las preferencias globalmente
+    setUser((prevState) => ({
+      ...prevState,
+      preferencias: newPreferencias,
+    }));
+    console.log('Preferencias actualizadas:', newPreferencias);
+
+    router.push(`/Chat&&${categoria}`)
   };
 
     const cardClasses = {
@@ -32,7 +49,7 @@ export default function HomeBody() {
     const preferencias = user?.preferencias || [0, 0, 0];
     const categorias = [
       { nombre: "Cultivo", valor: preferencias[0], clase: cardClasses.cultivo, icono: iconos.cultivo, colorSecundario: "#6A4EBD" },
-      { nombre: "Producción", valor: preferencias[1], clase: cardClasses.produccion, icono: iconos.produccion, colorSecundario: "#2B7BC1" },
+      { nombre: "Produccion", valor: preferencias[1], clase: cardClasses.produccion, icono: iconos.produccion, colorSecundario: "#2B7BC1" },
       { nombre: "Ventas", valor: preferencias[2], clase: cardClasses.ventas, icono: iconos.ventas, colorSecundario: "#1A9E87" },
     ];
     categorias.sort((a, b) => b.valor - a.valor);
