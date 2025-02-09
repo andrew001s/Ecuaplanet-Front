@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 
 interface Props {
-  message: string;
+    message: string;
 }
 
 export const ErrorMessage: React.FC<Props> = ({ message }) => {

@@ -9,15 +9,15 @@ import { ErrorMessage } from '../src/components/ErrorMessage';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { loading, error, handleLogin } = useAuth();
-  const router = useRouter(); 
+  const router = useRouter();
 
   const handleLoginPress = async () => {
-    const success = await handleLogin(email, password); 
-    if (success) { 
-        router.replace('/HomeTemplate');
+    const success = await handleLogin(email, password);
+    if (success) {
+      router.replace('/HomeTemplate');
     }
   };
 

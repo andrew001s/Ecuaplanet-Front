@@ -16,16 +16,16 @@ const Bubble = ({ item, isLoading }: BubbleProps) => {
         <MaterialCommunityIcons
           name="robot"
           size={26}
-          color="white"
-          className="mr-2 rounded-full p-1 bg-gray-400 self-start"
+          color="black"
+          className="mr-2 rounded-full p-1 bg-white self-start  border border-black"
         />
       )}
       <View
         className={`${
           item.role === 'user'
-            ? 'bg-[#DEE1E6FF] border border-[#b5bac4] border-solid'
-            : 'bg-white'
-        } pr-6 pl-6 pt-3 pb-3 border border-[#DEE1E6FF] shadow-sm rounded-[16px]`}
+            ? 'bg-[#636AE8BF] border  border-[#b5bac4] border-solid rounded-b-[16px] rounded-tl-[16px]'
+            : 'bg-white rounded-e-[16px] rounded-bl-[16px] '
+        } pr-6 pl-6 pt-3 pb-3 border border-[#DEE1E6FF] shadow-sm `}
         style={{ maxWidth: '90%', flexShrink: 1 }}
       >
         {item.role === 'bot' && (
@@ -42,13 +42,15 @@ const Bubble = ({ item, isLoading }: BubbleProps) => {
             />
           </View>
         ) : item.text ? (
-          <Text className="text-[#323842FF]">
+          <Text
+            className={`${item.role === 'user' ? 'text-white' : 'text-[#323842FF]'} text-lg`}
+          >
             {item.text}
           </Text>
         ) : (
           <Text className="text-[#323842FF]">
             Error, no se pudo cargar el mensaje
-        </Text>
+          </Text>
         )}
       </View>
     </View>
