@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { ErrorMessage } from '../src/components/ErrorMessage';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useRouter } from 'expo-router';
+import { useAuth } from '../src/hooks/useAuth';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
