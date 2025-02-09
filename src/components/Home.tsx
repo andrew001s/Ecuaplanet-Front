@@ -16,9 +16,9 @@ export default function HomeBody() {
 
     // Mapeo de clases de Tailwind para los colores
     const cardClasses = {
-      cultivo: "bg-cultivo",
-      produccion: "bg-produccion",
-      ventas: "bg-ventas",
+      cultivo: "bg-[#7f55e0]",
+      produccion: "bg-[#379AE6]",
+      ventas: "bg-[#22CCB2]",
     };
     const iconos = {
       cultivo: (
@@ -42,7 +42,7 @@ export default function HomeBody() {
  
       <View className="flex-row h-64 w-full gap-1">
         <TouchableHighlight
-          className="bg-[#7f55e0] justify-center rounded-3xl w-1/2"
+          className={`${categorias[0].clase} flex-1 justify-center rounded-3xl`}
           onPress={() => handleChatPress(categorias[0].nombre.toLowerCase())}
           underlayColor={'#6A4EBD'}
         >
@@ -57,7 +57,7 @@ export default function HomeBody() {
         
         <View className="w-1/2 justify-between">
           <TouchableHighlight
-            className="bg-[#22CCB2] flex-1 justify-center rounded-3xl mb-1"
+            className={`${categorias[1].clase} flex-1 justify-center rounded-3xl mb-1`}
             onPress={() => handleChatPress(categorias[1].nombre.toLowerCase())}
             underlayColor="#1A9E87"
           >
@@ -70,7 +70,7 @@ export default function HomeBody() {
           </TouchableHighlight>
 
           <TouchableHighlight
-            className="bg-[#379AE6] flex-1 justify-center rounded-3xl "
+            className={`${categorias[2].clase} flex-1 justify-center rounded-3xl`}
             onPress={() => handleChatPress(categorias[2].nombre.toLowerCase())}
             underlayColor="#2B7BC1"
           >
