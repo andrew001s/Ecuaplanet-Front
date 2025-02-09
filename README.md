@@ -223,7 +223,7 @@ Utiliza el formato de **Conventional Commits** para los mensajes de commit:
 ### Ejemplos:
 
 - ✨ `feat: :sparkles: agregar funcionalidad de inicio de sesión`
-- 🔧 `fix: :wrench: corregir configuración del linter`
+- 🐛 `fix: :bug: corregir configuración del linter`
 - 🖊️ `doc: :pencil: actualizar documentación del README`
 
 **⚠️ Importante ⚠️**: Asegúrte de que todos los commits sigan el formato de **Conventional Commits** y que el código pase las verificaciones de ESLint y Prettier antes de realizar un push.
