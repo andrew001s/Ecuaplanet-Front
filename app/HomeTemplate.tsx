@@ -19,7 +19,7 @@ function HomeTemplate() {
     <ScrollView>
       <View className="flex-1">
         <View className="mt-8">
-          <View className="flex-1 justify-center items-center">
+          <View className="flex-1 px-6 pt-4 justify-center items-center">
             <HomeHeader nombre={user?.nombre} apellido={user?.apellido}/>
             <HomeBody/>
             <StatusBar style="auto"/>

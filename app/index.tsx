@@ -14,9 +14,11 @@ export default function Index() {
     // Simular pantalla de carga por 1 segundo
     const timer = setTimeout(() => {
       if (isAuthenticated) {
+        console.log("Estado de isAuthenticated:", isAuthenticated);
         router.replace('/HomeTemplate'); // Si está autenticado, va al Home
       } else {
-        router.replace('/HomeTemplate'); // Si NO está autenticado, va al Login
+        console.log("Estado de isAuthenticated:", isAuthenticated);
+        router.replace('/LoginScreen'); // Si NO está autenticado, va al Login
       }
     }, 1200);
 
