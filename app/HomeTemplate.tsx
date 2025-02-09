@@ -13,7 +13,8 @@ function HomeTemplate() {
   const { user } = useContext(AuthContext);
   const { handleLogout } = useAuth();
   const router = useRouter();
-  // se esat agregando los componentes para el home
+
+  // se esta agregando los componentes para el home
   return (
     <ScrollView>
       <View className="flex-1">
