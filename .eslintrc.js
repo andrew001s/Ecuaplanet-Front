@@ -14,6 +14,7 @@ module.exports = {
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
+      tsx: true,
     },
     ecmaVersion: 12,
     sourceType: 'module',
@@ -22,7 +23,7 @@ module.exports = {
   rules: {
     'prettier/prettier': 'error',
     'react/react-in-jsx-scope': 'off',
-    'react/prop-types': 'off',
+    'react/prop-types': 'on',
   },
   settings: {
     react: {
