@@ -1,7 +1,6 @@
-
-import React, { useContext, useState,  useEffect, useRef } from 'react'
+import React, { useContext, useState, useEffect, useRef} from 'react';
 import { useAuth } from '../src/hooks/useAuth';
-import { View, Text, Pressable,ScrollView  } from 'react-native';
+import { View,ScrollView } from 'react-native';
 import { AuthContext } from '../src/context/AuthContext';
 import { useRouter } from 'expo-router';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
@@ -15,7 +14,7 @@ function HomeTemplate() {
   const { handleLogout } = useAuth();
   const router = useRouter();
 
-  // se esat agregando los componentes para el home
+  // se esta agregando los componentes para el home
   return (
     <ScrollView>
       <View className="flex-1">
@@ -24,5 +23,12 @@ function HomeTemplate() {
             <HomeHeader nombre={user?.nombre} apellido={user?.apellido}/>
             <HomeBody/>
             <StatusBar style="auto"/>
-          </View>      
-export default HomeTemplate
+          </View>         
+        </View>
+        <HomeFooter/>
+      </View>
+    </ScrollView>
+  );
+}
+
+export default HomeTemplate;
