@@ -3,7 +3,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 
 interface Props {
-  message: string;
+    message: string;
 }
 
 export const ErrorMessage: React.FC<Props> = ({ message }) => {
@@ -12,10 +12,10 @@ export const ErrorMessage: React.FC<Props> = ({ message }) => {
   }
   return (
     <View
-      className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+      className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl "
       role="alert"
     >
-      <Text className="text-sm">{message}</Text>
+      <Text className="text-md">{message}</Text>
     </View>
   );
 };
