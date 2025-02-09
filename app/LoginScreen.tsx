@@ -12,7 +12,12 @@ const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { loading, error, handleLogin } = useAuth();
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const router = useRouter(); 
+
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
 
   const handleLoginPress = async () => {
     const success = await handleLogin(email, password); 
@@ -40,21 +45,29 @@ const LoginScreen = () => {
                     <Text className="text-2xl text-center my-4 font-bold">Ingresar</Text>
                     <Text className="text-lg text-start my-3 font-bold">Email</Text>
                     <TextInput
-                        className="rounded-xl text-lg border border-gray-300 my-2 px-4"
-                        placeholder="Email"
+                        className="text-lg border-b border-gray-300 focus:border-b-[#379AE6] my-2 px-4"
+                        placeholder="user@example.com"
                         value={email}
                         onChangeText={setEmail}
                         autoCapitalize="none"
                     />
                     <Text className="text-lg text-start py-2 font-bold">Contraseña</Text>
-                    <TextInput
-                        className="rounded-xl text-lg border border-gray-300 my-2 px-4"
-                        placeholder="Contraseña"
-                        value={password}
-                        onChangeText={setPassword}
-                        secureTextEntry
-                        autoCapitalize="none"
-                    />
+                    <View className="relative"> 
+                        <TextInput
+                            className="text-lg border-b border-gray-300 focus:border-b-[#379AE6] my-2 px-4 pr-10" 
+                            placeholder="Contraseña"
+                            value={password}
+                            onChangeText={setPassword}
+                            secureTextEntry={!isPasswordVisible}
+                            autoCapitalize="none"
+                        />
+                        <TouchableOpacity 
+                            onPress={togglePasswordVisibility} 
+                            className="absolute right-5 top-6"
+                        >
+                            <Ionicons name={isPasswordVisible ? "eye-off" : "eye"} size={24} color="gray" />
+                        </TouchableOpacity>
+                    </View>
                     <TouchableOpacity
                         className="bg-[#636AE8] rounded-lg p-3 my-4"
                         onPress={handleLoginPress}
