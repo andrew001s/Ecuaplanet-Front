@@ -11,9 +11,10 @@ import React, { useEffect, useState } from 'react';
 import Chatheader from '../components/Chatheader';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import BubbleChat from '../components/BubbleChat';
-import { getCultivo } from '../services/fetchGemini';
+
 import FaqList from '../components/FaqList';
-import { Link } from 'expo-router';
+import { getCultivo } from '../services/fetchGemini';
+import { getChat, postChat } from '../services/fetchChatHistory';
 
 const initialMessages = {
   text: '¡Qué bueno verte de nuevo! ¿Qué te interesaría conocer el día de hoy? 🥳 💸',
@@ -27,25 +28,45 @@ const Chat = () => {
   const [showFaq, setShowFaq] = useState(true);
 
   useEffect(() => {
-    setMessages([initialMessages]);
+    const fetchData = async () => {
+      const messages: ChatMessage[] = await getChat('andres'); 
+      if (messages.length === 0) {
+        setMessages([initialMessages]);
+        setShowFaq(true);
+        return;
+      }else {
+        const formattedMessages = messages.map((msg) => ({
+          text: msg.message,
+          role: msg.sender === "bot" ? "bot" : "user" 
+        }));
+        setShowFaq(false);
+        setMessages(formattedMessages); 
+      }
+    };
+    
+    fetchData();
   }, []);
+
 
   const sendMessage = async (messageText: string) => {
     if (!messageText.trim()) return;
     if (isLoading) return;
 
     setIsLoading(true);
+    const userMessage = { id: 'andres', message: messageText, sender: 'user', timestamp: new Date().toISOString() };
     setMessages((prev) => [...prev, { text: messageText, role: 'user' }]);
     setValue('');
     setShowFaq(false);
-
+    postChat(userMessage);
+    
+    
     const message = await getCultivo(messageText);
-
+    const botMessage = { id: 'andres', message: message, sender: 'bot', timestamp: new Date().toISOString() };
     setMessages((prevMessages) => [
       ...prevMessages,
       { text: message, role: 'bot' },
     ]);
-
+    postChat(botMessage);
     setIsLoading(false);
   };
 
@@ -55,14 +76,14 @@ const Chat = () => {
       className="flex-1"
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View className="flex-1">
+        <View className="flex-1 bg-[#F3F4F6FF]">
           <Chatheader />
           <View className="flex-1 p-4">
             <BubbleChat messages={messages} isLoading={isLoading} />
             {showFaq && <FaqList onSelectFaq={(text) => sendMessage(text)} />}
           </View>
 
-          <View className="flex-row items-center justify-between bg-white p-4 pl-6 pr-6">
+          <View className="flex-row items-center justify-between  p-4 pl-6 pr-6">
             <TextInput
               className="flex-1 border border-[#BCC1CAFF] border-solid outline-none p-2 pr-4 pl-4 rounded-[18px]"
               placeholder="Escribe un mensaje..."
@@ -72,12 +93,9 @@ const Chat = () => {
               numberOfLines={4}
               textAlignVertical="top"
             />
-            <TouchableOpacity className="ml-2" onPress={() => sendMessage(value)}>
+            <TouchableOpacity className="ml-2 " onPress={() => sendMessage(value)}>
               <FontAwesome name="send-o" size={24} color="#636AE8FF" />
             </TouchableOpacity>
-            <Link href="navigation/pagetest" className="text-[#636AE8FF]">
-              FAQ
-            </Link>
           </View>
         </View>
       </TouchableWithoutFeedback>
