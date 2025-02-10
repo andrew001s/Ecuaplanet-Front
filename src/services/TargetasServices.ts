@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Card } from '../constants/card.types';
 
-const API_URL = "http://192.168.100.35:8080/api/ingresos/max-venta";
+const API_URL = "http://192.168.3.205:8080/api/ingresos/max-venta";
 
 export const fetchCardInfo = async () => {
     try{

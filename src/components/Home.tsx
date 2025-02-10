@@ -1,63 +1,104 @@
-import { ScrollView, Text, View, TouchableHighlight} from 'react-native';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import React, { useContext } from 'react';
+import { ScrollView, Text, View, TouchableHighlight, Pressable, TouchableOpacity} from 'react-native';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import { AuthContext } from '../context/AuthContext';
 import { useRouter } from 'expo-router';
 
 export default function HomeBody() {
   const router=useRouter();
+  const { user, setUser } = useContext(AuthContext);
+  
   const handleChatPress = (categoria:string)=>{
-      router.push(`/Chat&&${categoria}`)
+    const newPreferencias = [...user?.preferencias];
+
+    // Aumentar la preferencia correspondiente dependiendo de la categoría
+    if (categoria === "cultivo") {
+      newPreferencias[0] += 1;
+    } else if (categoria === "produccion") {
+      newPreferencias[1] += 1;
+    } else if (categoria === "ventas") {
+      newPreferencias[2] += 1;
+    }
+
+    // Actualizar las preferencias globalmente
+    setUser((prevState) => ({
+      ...prevState,
+      preferencias: newPreferencias,
+    }));
+    console.log('Preferencias actualizadas:', newPreferencias);
+
+    router.push(`/Chat&&${categoria}`)
   };
-  return (
-    <ScrollView>
-      <View className="flex flex-row items-start justify-between pr-5 pl-4">
+
+    const cardClasses = {
+      cultivo: "bg-[#7f55e0]",
+      produccion: "bg-[#379AE6]",
+      ventas: "bg-[#22CCB2]",
+    };
+    const iconos = {
+      cultivo: (
+        <MaterialCommunityIcons name="flower-tulip-outline" size={50} color="white" />
+      ),
+      produccion: (
+        <MaterialCommunityIcons name="package-variant" size={50} color="white" />
+      ),
+      ventas: <FontAwesome6 name="money-bill-trend-up" size={40} color="white" />,
+    };
+  
+    const preferencias = user?.preferencias || [0, 0, 0];
+    const categorias = [
+      { nombre: "Cultivo", valor: preferencias[0], clase: cardClasses.cultivo, icono: iconos.cultivo, colorSecundario: "#6A4EBD" },
+      { nombre: "Produccion", valor: preferencias[1], clase: cardClasses.produccion, icono: iconos.produccion, colorSecundario: "#2B7BC1" },
+      { nombre: "Ventas", valor: preferencias[2], clase: cardClasses.ventas, icono: iconos.ventas, colorSecundario: "#1A9E87" },
+    ];
+    categorias.sort((a, b) => b.valor - a.valor);
+
+    return (
+ 
+      <View className="flex-row h-64 w-full gap-1">
         <TouchableHighlight
-          className="bg-[#7f55e0] py-[85px] px-10 rounded-3xl shadow-lg w-[170px]"
-          onPress={() => handleChatPress("cultivo")}/*Aqui se redirrecionaria a la pantalla del chat: /Chat&&cultivo*/
-          underlayColor={'#6A4EBD'}
+          className={`${categorias[0].clase} flex-1 justify-center rounded-3xl`}
+          onPress={() => handleChatPress(categorias[0].nombre.toLowerCase())}
+          underlayColor={categorias[0].colorSecundario}
         >
-          <View className="justify-center text-center items-center">
-            <MaterialCommunityIcons
-              name="flower-tulip-outline"
-              size={80}
-              color={'white'}
-            />
-            <Text className="text-white font-extrabold text-[20px] leading-[24px]">
-              CULTIVO
+          <View className="justify-center items-center">
+            {categorias[0].icono}
+            <Text className="text-white font-bold text-xl">
+              {categorias[0].nombre.toUpperCase()}
             </Text>
           </View>
         </TouchableHighlight>
-        <View className="flex flex-col items-center ml-2">
+
+        
+        <View className="w-1/2 justify-between">
           <TouchableHighlight
-            className="bg-[#22CCB2] py-8 px-10 rounded-3xl mb-3 w-[150px] shadow-lg"
-            onPress={() => handleChatPress("ventas")}/*Aqui se redirrecionaria a la pantalla del chat: /Chat&&ventas*/
-            underlayColor="#1A9E87"
+            className={`${categorias[1].clase} flex-1 justify-center rounded-3xl mb-1`}
+            onPress={() => handleChatPress(categorias[1].nombre.toLowerCase())}
+            underlayColor={categorias[1].colorSecundario}
           >
-            <View className="justify-center text-center items-center">
-              <MaterialIcons name="point-of-sale" size={50} color="white" />
-              <Text className="text-white font-extrabold text-[20px] leading-[24px]">
-                VENTAS
+            <View className="justify-center items-center">
+              {categorias[1].icono}
+              <Text className="text-white font-bold text-xl">
+                {categorias[1].nombre.toUpperCase()}
               </Text>
             </View>
           </TouchableHighlight>
+
           <TouchableHighlight
-            className="bg-[#379AE6] py-8 px-8 rounded-3xl mb-2 w-[150px] shadow-lg "
-            onPress={() => handleChatPress("produccion")} /*Aqui se redirrecionaria a la pantalla del chat: /Chat&&produccion*/
-            underlayColor="#2B7BC1"
+            className={`${categorias[2].clase} flex-1 justify-center rounded-3xl`}
+            onPress={() => handleChatPress(categorias[2].nombre.toLowerCase())}
+            underlayColor={categorias[2].colorSecundario}
           >
-            <View className="justify-center text-center items-center">
-              <MaterialCommunityIcons
-                name="package-variant"
-                size={50}
-                color="white"
-              />
-              <Text className="text-white font-extrabold text-[14px] leading-[24px]">
-                PRODUCCIÓN
+            <View className="justify-center items-center">
+              {categorias[2].icono}
+              <Text className="text-white font-bold text-xl">
+                {categorias[2].nombre.toUpperCase()}
               </Text>
             </View>
           </TouchableHighlight>
         </View>
       </View>
-    </ScrollView>
   );
 }
+
