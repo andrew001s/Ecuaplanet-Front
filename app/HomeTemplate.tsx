@@ -1,46 +1,35 @@
-import React, { useContext, useState, useEffect, useRef } from 'react';
+import React, { useContext, useState, useEffect, useRef} from 'react';
 import { useAuth } from '../src/hooks/useAuth';
-import { View, Text, Pressable } from 'react-native';
+import { View,ScrollView } from 'react-native';
 import { AuthContext } from '../src/context/AuthContext';
 import { useRouter } from 'expo-router';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import HomeHeader from '../src/components/HomeHead';
+import HomeBody from '../src/components/Home';
+import { StatusBar } from 'expo-status-bar';
+import HomeFooter from '../src/components/HomeFooter';
 
 function HomeTemplate() {
   const { user } = useContext(AuthContext);
   const { handleLogout } = useAuth();
   const router = useRouter();
 
-  const handleLogoutPress = async () => {
-    try {
-      await handleLogout();
-      router.replace('/LoginScreen');
-    } catch (error) {
-      console.error('Error al cerrar sesión:', error);
-    }
-  };
-
+  // se esta agregando los componentes para el home
   return (
-    <View className="flex-1 bg-white p-6">
-      <View className="flex-row items-center mb-4">
-        <View className="w-1/4 justify-center items-center">
-          <FontAwesome5 name="user-circle" size={24} color="black" />
-        </View>
-        <View className="w-3/4">
-          <Text className="text-xl font-bold">Bienvenido de vuelta </Text>
-          <Text className="text-2xl font-bold">
-            {user?.nombre} {user?.apellido}
-          </Text>
+    <ScrollView>
+      <View className="flex-1">
+        <View className="mt-8">
+          <View className="flex-1 px-6 pt-4 justify-center items-center">
+            <StatusBar style="auto"/>
+            <HomeHeader nombre={user?.nombre} apellido={user?.apellido}/>
+            <HomeBody/>
+          </View>  
+          <View className='flex-1 px-6'>
+            <HomeFooter/>
+          </View>
         </View>
       </View>
-
-      <Text className="text-lg mb-4">Home</Text>
-      <Pressable onPress={handleLogoutPress} className="bg-red-500 p-2 rounded">
-        <Text className="text-white font-bold">Cerrar sesión</Text>
-      </Pressable>
-      <Pressable onPress={handleLogoutPress} className="bg-red-500 p-2 rounded">
-        <Text className="text-white font-bold">Cerrar sesión</Text>
-      </Pressable>
-    </View>
+    </ScrollView>
   );
 }
 

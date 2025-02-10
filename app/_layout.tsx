@@ -14,7 +14,7 @@ const _layout = () => {
 
   return (
     <AuthProvider>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle='light-content' />
       <Slot />
     </AuthProvider>
   );
