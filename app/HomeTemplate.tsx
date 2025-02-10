@@ -1,6 +1,6 @@
-import React, { useContext, useState, useEffect, useRef} from 'react';
+import React, { useContext, useState,  useEffect, useRef } from 'react'
 import { useAuth } from '../src/hooks/useAuth';
-import { View,ScrollView } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import { AuthContext } from '../src/context/AuthContext';
 import { useRouter } from 'expo-router';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
@@ -8,6 +8,7 @@ import HomeHeader from '../src/components/HomeHead';
 import HomeBody from '../src/components/Home';
 import { StatusBar } from 'expo-status-bar';
 import HomeFooter from '../src/components/HomeFooter';
+import { ScrollView } from 'react-native-reanimated/lib/typescript/Animated';
 
 function HomeTemplate() {
   const { user } = useContext(AuthContext);
