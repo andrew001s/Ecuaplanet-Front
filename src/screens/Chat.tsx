@@ -13,8 +13,9 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import BubbleChat from '../components/BubbleChat';
 
 import FaqList from '../components/FaqList';
-import { getCultivo } from '../services/fetchGemini';
+import { getCultivo, getProduccion, getVentas } from '../services/fetchGemini';
 import { getChat, postChat } from '../services/fetchChatHistory';
+import { useSearchParams } from 'expo-router/build/hooks';
 
 const initialMessages = {
   text: '¡Qué bueno verte de nuevo! ¿Qué te interesaría conocer el día de hoy? 🥳 💸',
@@ -22,52 +23,97 @@ const initialMessages = {
 };
 
 const Chat = () => {
-  const [messages, setMessages] = useState<{ text: string; role: string }[]>([]);
+  const searchParams = useSearchParams();
+  const category = searchParams.get('category');
+  console.log(category);
+  const [messages, setMessages] = useState<{ text: string; role: string }[]>(
+    [],
+  );
   const [value, setValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showFaq, setShowFaq] = useState(true);
 
   useEffect(() => {
+    console.log(category);
     const fetchData = async () => {
-      const messages: ChatMessage[] = await getChat('andres'); 
+      const messages: ChatMessage[] = await getChat('andres');
       if (messages.length === 0) {
         setMessages([initialMessages]);
         setShowFaq(true);
         return;
-      }else {
+      } else {
         const formattedMessages = messages.map((msg) => ({
           text: msg.message,
-          role: msg.sender === "bot" ? "bot" : "user" 
+          role: msg.sender === 'bot' ? 'bot' : 'user',
         }));
         setShowFaq(false);
-        setMessages(formattedMessages); 
+        setMessages(formattedMessages);
       }
     };
-    
+
     fetchData();
   }, []);
-
 
   const sendMessage = async (messageText: string) => {
     if (!messageText.trim()) return;
     if (isLoading) return;
 
     setIsLoading(true);
-    const userMessage = { id: 'andres', message: messageText, sender: 'user', timestamp: new Date().toISOString() };
+    const userMessage = {
+      id: 'andres',
+      message: messageText,
+      sender: 'user',
+      timestamp: new Date().toISOString(),
+    };
     setMessages((prev) => [...prev, { text: messageText, role: 'user' }]);
     setValue('');
     setShowFaq(false);
     postChat(userMessage);
-    
-    
-    const message = await getCultivo(messageText);
-    const botMessage = { id: 'andres', message: message, sender: 'bot', timestamp: new Date().toISOString() };
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      { text: message, role: 'bot' },
-    ]);
-    postChat(botMessage);
-    setIsLoading(false);
+
+    if (category === 'cultivo') {
+      const message = await getCultivo(messageText);
+      const botMessage = {
+        id: 'andres',
+        message: message,
+        sender: 'bot',
+        timestamp: new Date().toISOString(),
+      };
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { text: message, role: 'bot' },
+      ]);
+      postChat(botMessage);
+      setIsLoading(false);
+    } else if (category === 'produccion') {
+      const message = await getProduccion(messageText);
+      const botMessage = {
+        id: 'andres',
+        message: message,
+        sender: 'bot',
+        timestamp: new Date().toISOString(),
+      };
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { text: message, role: 'bot' },
+      ]);
+      postChat(botMessage);
+      setIsLoading(false);
+    } else if (category === 'ventas') {
+      const message = await getVentas(messageText);
+      const botMessage = {
+        id: 'andres',
+        message: message,
+        sender: 'bot',
+        timestamp: new Date().toISOString(),
+      };
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { text: message, role: 'bot' },
+      ]);
+      setValue('');
+      postChat(botMessage);
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -93,7 +139,10 @@ const Chat = () => {
               numberOfLines={4}
               textAlignVertical="top"
             />
-            <TouchableOpacity className="ml-2 " onPress={() => sendMessage(value)}>
+            <TouchableOpacity
+              className="ml-2 "
+              onPress={() => sendMessage(value)}
+            >
               <FontAwesome name="send-o" size={24} color="#636AE8FF" />
             </TouchableOpacity>
           </View>
