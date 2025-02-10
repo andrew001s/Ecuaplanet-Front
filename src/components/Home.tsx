@@ -28,7 +28,7 @@ export default function HomeBody() {
     }));
     console.log('Preferencias actualizadas:', newPreferencias);
 
-    router.push(`/Chat&&${categoria}`)
+    router.push(`/ChatTemplate?category=${categoria}`)
   };
 
     const cardClasses = {

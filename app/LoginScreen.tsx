@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, ScrollView } from 'react-native';
 import { ErrorMessage } from '../src/components/ErrorMessage';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 import { useAuth } from '../src/hooks/useAuth';
-import { ScrollView } from 'react-native-reanimated/lib/typescript/Animated';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
