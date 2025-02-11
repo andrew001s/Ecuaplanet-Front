@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 
-const baseURL = 'http://192.168.100.183:8080/api/gemini/';
-
+const baseURL = 'http://192.168.100.168:8080/api/gemini/';
+const flaskBaseURL = 'http://192.168.100.168:5050/api/';
 export async function getCultivo(text: string) {
   try {
     const response = await axios.post(baseURL + 'cultivo', { text: text });
@@ -29,5 +29,23 @@ export async function getVentas(text:string){
     return responsebot;
   }catch(error){
     console.error(error);
+  }
+}
+interface ChartDataResponse {
+  imageUrl: string;
+}
+export async function extractChartData(initialResponse: string): Promise<ChartDataResponse> { //  tipo de retorno
+  try {
+    const response: AxiosResponse<ChartDataResponse> = await axios.post(`${flaskBaseURL}extract_chart_data`, { initialResponse });
+
+    // Validación más simple: solo necesitamos la URL
+    if (!response.data || !response.data.imageUrl) {
+      throw new Error("Invalid response format from Flask backend.  Missing imageUrl.");
+    }
+    return response.data; // Devuelve { imageUrl: "..." }
+
+  } catch (error) {
+    console.log(error as AxiosError);
+    throw error;
   }
 }

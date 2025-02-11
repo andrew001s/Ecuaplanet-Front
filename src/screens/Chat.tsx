@@ -13,7 +13,12 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import BubbleChat from '../components/BubbleChat';
 
 import FaqList from '../components/FaqList';
-import { getCultivo, getProduccion, getVentas } from '../services/fetchGemini';
+import {
+  getCultivo,
+  getProduccion,
+  getVentas,
+  extractChartData,
+} from '../services/fetchGemini';
 import { getChat, postChat } from '../services/fetchChatHistory';
 import { useSearchParams } from 'expo-router/build/hooks';
 
@@ -25,7 +30,7 @@ const initialMessages = {
 const Chat = () => {
   const searchParams = useSearchParams();
   const category = searchParams.get('category');
-  const user= searchParams.get('user');
+  const user = searchParams.get('user');
   console.log(user);
   const [messages, setMessages] = useState<{ text: string; role: string }[]>(
     [],
@@ -33,6 +38,7 @@ const Chat = () => {
   const [value, setValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showFaq, setShowFaq] = useState(true);
+  const [imgURL, setImgURL] = useState('');
 
   useEffect(() => {
     console.log(category);
@@ -55,13 +61,24 @@ const Chat = () => {
     fetchData();
   }, []);
 
+  const getImage = async (initialResponse: string) => {
+    try {
+      const response = await extractChartData(initialResponse);
+      console.log(response);
+      setImgURL(response.imageUrl);
+      return response;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const sendMessage = async (messageText: string) => {
     if (!messageText.trim()) return;
     if (isLoading) return;
 
     setIsLoading(true);
     const userMessage = {
-      user:  user || '',
+      user: user || '',
       message: messageText,
       sender: 'user',
       timestamp: new Date().toISOString(),
@@ -81,10 +98,24 @@ const Chat = () => {
         timestamp: new Date().toISOString(),
         category: category || '',
       };
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { text: message, role: 'bot' },
-      ]);
+      if (
+        messageText.toLowerCase().includes('grafico') ||
+        messageText.toLowerCase().includes('gráfico') ||
+        messageText.toLowerCase().includes('grafica') ||
+        messageText.toLowerCase().includes('gráfica')
+      ) {
+        const imageResponse = await getImage(message);
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { text: message, role: 'bot', imgUrl: imageResponse?.imageUrl || '' },
+        ]);
+      } else {
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { text: message, role: 'bot' },
+        ]);
+      }
+      setValue('');
       postChat(botMessage);
       setIsLoading(false);
     } else if (category === 'produccion') {
@@ -96,10 +127,24 @@ const Chat = () => {
         timestamp: new Date().toISOString(),
         category: category,
       };
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { text: message, role: 'bot' },
-      ]);
+      if (
+        messageText.toLowerCase().includes('grafico') ||
+        messageText.toLowerCase().includes('gráfico') ||
+        messageText.toLowerCase().includes('grafica') ||
+        messageText.toLowerCase().includes('gráfica')
+      ) {
+        const imageResponse = await getImage(message);
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { text: message, role: 'bot', imgUrl: imageResponse?.imageUrl || '' },
+        ]);
+      } else {
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { text: message, role: 'bot' },
+        ]);
+      }
+      setValue('');
       postChat(botMessage);
       setIsLoading(false);
     } else if (category === 'ventas') {
@@ -111,16 +156,28 @@ const Chat = () => {
         timestamp: new Date().toISOString(),
         category: category,
       };
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { text: message, role: 'bot' },
-      ]);
+      if (
+        messageText.toLowerCase().includes('grafico') ||
+        messageText.toLowerCase().includes('gráfico') ||
+        messageText.toLowerCase().includes('grafica') ||
+        messageText.toLowerCase().includes('gráfica')
+      ) {
+        const imageResponse = await getImage(message);
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { text: message, role: 'bot', imgUrl: imageResponse?.imageUrl || '' },
+        ]);
+      } else {
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { text: message, role: 'bot' },
+        ]);
+      }
       setValue('');
       postChat(botMessage);
       setIsLoading(false);
     }
   };
-
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -130,8 +187,17 @@ const Chat = () => {
         <View className="flex-1 bg-[#F3F4F6FF]">
           <Chatheader />
           <View className="flex-1 p-4">
-            <BubbleChat messages={messages} isLoading={isLoading} />
-            {showFaq && <FaqList onSelectFaq={(text) => sendMessage(text)} category={category || ''} />}
+            <BubbleChat
+              messages={messages}
+              isLoading={isLoading}
+              imgUrl={imgURL}
+            />
+            {showFaq && (
+              <FaqList
+                onSelectFaq={(text) => sendMessage(text)}
+                category={category || ''}
+              />
+            )}
           </View>
 
           <View className="flex-row items-center justify-between  p-4 pl-6 pr-6">

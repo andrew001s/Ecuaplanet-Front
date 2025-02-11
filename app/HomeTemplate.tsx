@@ -17,7 +17,7 @@ function HomeTemplate() {
   // se esta agregando los componentes para el home
   return (
     <ScrollView>
-      <View className="flex-1">
+      <View className="flex-1 bg-light-50">
         <View className="mt-8">
           <View className="flex-1 px-6 pt-4 justify-center items-center">
             <StatusBar style="auto"/>

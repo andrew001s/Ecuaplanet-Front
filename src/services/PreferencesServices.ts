@@ -2,7 +2,7 @@ import axios from "axios";
 import { getAuth } from "firebase/auth";
 import { User } from "../constants/user.types";
 
-const API_URL = 'http://192.168.100.183:8080/api/user/preferences';
+const API_URL = 'http://192.168.100.168:8080/api/user/preferences';
 
 export const fetchUserPreferences = async () => {
   try {

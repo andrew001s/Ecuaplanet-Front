@@ -56,7 +56,7 @@ export default function HomeBody() {
 
     return (
  
-      <View className="flex-row h-64 w-full gap-1">
+      <View className="flex-row h-64 w-full gap-1 bg-white">
         <TouchableHighlight
           className={`${categorias[0].clase} flex-1 justify-center rounded-3xl`}
           onPress={() => handleChatPress(categorias[0].nombre.toLowerCase())}
