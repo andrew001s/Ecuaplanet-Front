@@ -5,14 +5,16 @@ import Bubble from './Bubble';
 interface BubbleChatProps {
   messages: { text: string; role: string }[];
   isLoading: boolean;
+  imgUrl?: string;
 }
 
-const BubbleChat = ({ messages, isLoading }: BubbleChatProps) => {
+const BubbleChat = ({ messages, isLoading,imgUrl }: BubbleChatProps) => {
   const generateKey = (message: string) =>
     `${message}-${Math.random().toString(36).substr(2, 9)}`;
 
   const flatListRef = useRef<FlatList>(null);
 
+  console.log(imgUrl);
   useEffect(() => {
     const timeout = setTimeout(() => {
       flatListRef.current?.scrollToOffset({ offset: 9999, animated: true });
@@ -21,6 +23,7 @@ const BubbleChat = ({ messages, isLoading }: BubbleChatProps) => {
     return () => clearTimeout(timeout); 
   }, [messages]);
 
+
   return (
     <FlatList
       ref={flatListRef}
@@ -28,7 +31,7 @@ const BubbleChat = ({ messages, isLoading }: BubbleChatProps) => {
       contentContainerStyle={{ paddingBottom: 16 }}
       data={messages}
       keyExtractor={(item) => generateKey(item.text)}
-      renderItem={({ item }) => Bubble({ item })}
+      renderItem={({ item }) => Bubble({ item,imgUrl })}
       ListFooterComponent={
         isLoading
           ? Bubble({ item: { text: 'Cargando', role: 'bot' }, isLoading: true })

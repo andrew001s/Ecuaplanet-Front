@@ -34,6 +34,7 @@ const Chat = () => {
   const [value, setValue] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showFaq, setShowFaq] = useState<boolean>(true);
+  const [imgUrl, setImgUrl] = useState<string>(''); // Image URL state
 
   useEffect(() => {
     const fetchData = async () => {
@@ -96,14 +97,16 @@ const Chat = () => {
       if (messageText.toLowerCase().includes('grafico')) { // Case-insensitive check
         try {
           const chartData = await extractChartData(geminiResponse);
-
           if (chartData && chartData.imageUrl) {
+
+            setImgUrl(chartData.imageUrl); // Set the image URL
+
             setMessages((prevMessages) => [
               ...prevMessages,
-              { text: "", role: 'bot', imageUrl: chartData.imageUrl }, // Image-only message
+              { text: "Imagen: ", role: 'bot', imageUrl: chartData.imageUrl }, 
             ]);
             // Save the image to history
-            postChat({ id: 'andres', message: "", sender: 'bot', timestamp: new Date().toISOString(), imageUrl: chartData.imageUrl })
+            postChat({ id: 'andres', message: "Imagen: ", sender: 'bot', timestamp: new Date().toISOString(), imageUrl: chartData.imageUrl })
             .catch(error => {
               console.error("Error saving image message to history", error)
             });
@@ -137,7 +140,7 @@ const Chat = () => {
     }
   };
 
-
+  
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -148,7 +151,7 @@ const Chat = () => {
           <Chatheader />
           <View className="flex-1 p-4">
             {/*  Pass messages and isLoading to BubbleChat */}
-            <BubbleChat messages={messages} isLoading={isLoading} />
+            <BubbleChat messages={messages} isLoading={isLoading} imgUrl={imgUrl} />
             {showFaq && <FaqList onSelectFaq={(text) => sendMessage(text)} />}
           </View>
 

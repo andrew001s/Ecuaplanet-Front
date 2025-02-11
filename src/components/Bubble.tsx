@@ -1,13 +1,14 @@
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { TypingAnimation } from 'react-native-typing-animation';
 
 interface BubbleProps {
-  item: { text: string; role: string };
+  item: { text: string; role: string};
+  imgUrl?: string;
   isLoading?: boolean;
 }
 
-const Bubble = ({ item, isLoading }: BubbleProps) => {
+const Bubble = ({ item, isLoading,imgUrl }: BubbleProps) => {
   return (
     <View
       className={`flex-row mb-4 ${item.role === 'bot' ? 'justify-start' : 'justify-end'} pr-2 items-start`}
@@ -42,9 +43,22 @@ const Bubble = ({ item, isLoading }: BubbleProps) => {
             />
           </View>
         ) : item.text ? (
+          <>
           <Text className={`${item.role === 'user' ? 'text-white' : 'text-[#323842FF]'} text-lg`}>
             {item.text}
           </Text>
+          {imgUrl ? (
+            <View className="flex-row mt-2">
+              <Image
+                source={{ uri: imgUrl }}
+                style={{ width: 150, height: 150, borderRadius: 16 }}
+              />
+            </View>
+          ):
+          null}
+          </>
+          
+          
         ) : (
           <Text className="text-[#323842FF]">
             Error, no se pudo cargar el mensaje

@@ -10,7 +10,7 @@ export interface ChatMessage {
 }
 
 
-const baseURL = process.env.EXPO_PUBLIC_API_URL || 'http://192.168.1.7:8080/chat/'; // Use environment variable
+const baseURL = process.env.EXPO_PUBLIC_API_URL || 'http://192.168.100.168:8080/chat/'; // Use environment variable
 
 // Centralized error handling (similar to what we did with fetchGemini)
 const handleApiError = (error: AxiosError) => {

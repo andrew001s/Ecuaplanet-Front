@@ -8,10 +8,10 @@ interface ChartDataResponse {
 }
 
 // URL base del backend Spring Boot (usando variables de entorno)
-const baseURL = process.env.EXPO_PUBLIC_API_URL || 'http://192.168.1.7:8080/api/gemini/'; //  IP
+const baseURL = process.env.EXPO_PUBLIC_API_URL || 'http://192.168.100.168:8080/api/gemini/'; //  IP
 
 // URL base del backend Flask (también usando variables de entorno)
-const flaskBaseURL = process.env.EXPO_PUBLIC_FLASK_API_URL || 'http://192.168.1.7:5000/api/'; //  IP y puerto
+const flaskBaseURL = process.env.EXPO_PUBLIC_FLASK_API_URL || 'http://192.168.100.168:5050/api/'; //  IP y puerto
 
 // Función de utilidad para manejar errores de API (centralizada)
 const handleApiError = (error: AxiosError) => {
@@ -59,7 +59,6 @@ export async function extractChartData(initialResponse: string): Promise<ChartDa
     if (!response.data || !response.data.imageUrl) {
       throw new Error("Invalid response format from Flask backend.  Missing imageUrl.");
     }
-
     return response.data; // Devuelve { imageUrl: "..." }
 
   } catch (error) {
