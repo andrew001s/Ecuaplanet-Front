@@ -54,7 +54,7 @@ const LoginScreen = () => {
                 className="mt-12"
               />
               <Text className="text-white text-3xl my-8 font-bold">
-                ECUAPLANET
+                BLOOM BOOT
               </Text>
             </View>
             <View className="flex-1 bg-white rounded-t-3xl">
