@@ -2,9 +2,14 @@ import axios from 'axios';
 
 const baseURL = 'http://192.168.100.168:8080/chat/';
 
-export async function getChat(text: string,category:string):Promise<ChatMessage[]> {
+export async function getChat(
+  text: string,
+  category: string,
+): Promise<ChatMessage[]> {
   try {
-    const response = await axios.get(baseURL + 'history?key=chat:history:'+category+":" + text);
+    const response = await axios.get(
+      baseURL + 'history?key=chat:history:' + category + ':' + text,
+    );
     return response.data;
   } catch (error) {
     console.error(error);
@@ -12,9 +17,9 @@ export async function getChat(text: string,category:string):Promise<ChatMessage[
   }
 }
 
-export async function postChat(chat: ChatMessage):Promise<void> {
+export async function postChat(chat: ChatMessage): Promise<void> {
   try {
-    await axios.post(baseURL + 'send',  chat );
+    await axios.post(baseURL + 'send', chat);
   } catch (error) {
     console.error(error);
   }

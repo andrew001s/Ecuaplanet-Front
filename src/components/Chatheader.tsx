@@ -5,7 +5,7 @@ import { router } from 'expo-router';
 const Header = () => {
   const handleBack = () => {
     router.push('/HomeTemplate');
-  }
+  };
   return (
     <View className="pt-4 bg-white">
       <View className="relative flex-row items-center justify-center h-12">

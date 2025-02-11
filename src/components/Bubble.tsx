@@ -42,17 +42,24 @@ const Bubble = ({ item, isLoading }: BubbleProps) => {
           </View>
         ) : item.text ? (
           <>
-            <Text className={`${item.role === 'user' ? 'text-white' : 'text-[#323842FF]'} text-lg`}>
+            <Text
+              className={`${item.role === 'user' ? 'text-white' : 'text-[#323842FF]'} text-lg`}
+            >
               {item.text}
             </Text>
             {item.imgUrl && (
               <View className="flex-row items-center justify-center mt-2">
-                <Image source={{ uri: item.imgUrl }} style={{ width: 200, height: 200 }} />
+                <Image
+                  source={{ uri: item.imgUrl }}
+                  style={{ width: 200, height: 200 }}
+                />
               </View>
             )}
           </>
         ) : (
-          <Text className="text-[#323842FF]">Error, no se pudo cargar el mensaje</Text>
+          <Text className="text-[#323842FF]">
+            Error, no se pudo cargar el mensaje
+          </Text>
         )}
       </View>
     </View>

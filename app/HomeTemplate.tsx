@@ -1,4 +1,4 @@
-import React, { useContext, useState,  useEffect, useRef } from 'react'
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { useAuth } from '../src/hooks/useAuth';
 import { View, Text, Pressable, ScrollView } from 'react-native';
 import { AuthContext } from '../src/context/AuthContext';
@@ -20,12 +20,12 @@ function HomeTemplate() {
       <View className="flex-1 bg-light-50">
         <View className="mt-8">
           <View className="flex-1 px-6 pt-4 justify-center items-center">
-            <StatusBar style="auto"/>
-            <HomeHeader nombre={user?.nombre} apellido={user?.apellido}/>
-            <HomeBody/>
-          </View>  
-          <View className='flex-1 px-6'>
-            <HomeFooter/>
+            <StatusBar style="auto" />
+            <HomeHeader nombre={user?.nombre} apellido={user?.apellido} />
+            <HomeBody />
+          </View>
+          <View className="flex-1 px-6">
+            <HomeFooter />
           </View>
         </View>
       </View>
