@@ -48,7 +48,7 @@ const LoginScreen = () => {
                         onChangeText={setEmail}
                         autoCapitalize="none"
                     />
-                    <Text className="text-lg text-start mt-5 py-2 font-bold">Contraseña</Text>
+                    <Text className={`text-lg text-start  ${Platform.OS==='ios' ? 'pt-7  ':'mt-5 py-2'} font-bold`}>Contraseña</Text>
                     <View className="relative"> 
                         <TextInput
                             className={`text-lg border-b border-gray-300 ${Platform.OS==='ios' ? 'pt-5 pb-4 ':''} focus:border-b-[#379AE6] px-4 pr-10`} 
