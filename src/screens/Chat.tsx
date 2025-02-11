@@ -25,7 +25,8 @@ const initialMessages = {
 const Chat = () => {
   const searchParams = useSearchParams();
   const category = searchParams.get('category');
-  console.log(category);
+  const user= searchParams.get('user');
+  console.log(user);
   const [messages, setMessages] = useState<{ text: string; role: string }[]>(
     [],
   );
@@ -36,7 +37,7 @@ const Chat = () => {
   useEffect(() => {
     console.log(category);
     const fetchData = async () => {
-      const messages: ChatMessage[] = await getChat('andres');
+      const messages: ChatMessage[] = await getChat(user || '', category || '');
       if (messages.length === 0) {
         setMessages([initialMessages]);
         setShowFaq(true);
@@ -60,10 +61,11 @@ const Chat = () => {
 
     setIsLoading(true);
     const userMessage = {
-      id: 'andres',
+      user:  user || '',
       message: messageText,
       sender: 'user',
       timestamp: new Date().toISOString(),
+      category: category || '',
     };
     setMessages((prev) => [...prev, { text: messageText, role: 'user' }]);
     setValue('');
@@ -73,10 +75,11 @@ const Chat = () => {
     if (category === 'cultivo') {
       const message = await getCultivo(messageText);
       const botMessage = {
-        id: 'andres',
+        user: user || '',
         message: message,
         sender: 'bot',
         timestamp: new Date().toISOString(),
+        category: category || '',
       };
       setMessages((prevMessages) => [
         ...prevMessages,
@@ -87,10 +90,11 @@ const Chat = () => {
     } else if (category === 'produccion') {
       const message = await getProduccion(messageText);
       const botMessage = {
-        id: 'andres',
+        user: user || '',
         message: message,
         sender: 'bot',
         timestamp: new Date().toISOString(),
+        category: category,
       };
       setMessages((prevMessages) => [
         ...prevMessages,
@@ -101,10 +105,11 @@ const Chat = () => {
     } else if (category === 'ventas') {
       const message = await getVentas(messageText);
       const botMessage = {
-        id: 'andres',
+        user: user || '',
         message: message,
         sender: 'bot',
         timestamp: new Date().toISOString(),
+        category: category,
       };
       setMessages((prevMessages) => [
         ...prevMessages,
@@ -126,7 +131,7 @@ const Chat = () => {
           <Chatheader />
           <View className="flex-1 p-4">
             <BubbleChat messages={messages} isLoading={isLoading} />
-            {showFaq && <FaqList onSelectFaq={(text) => sendMessage(text)} />}
+            {showFaq && <FaqList onSelectFaq={(text) => sendMessage(text)} category={category || ''} />}
           </View>
 
           <View className="flex-row items-center justify-between  p-4 pl-6 pr-6">

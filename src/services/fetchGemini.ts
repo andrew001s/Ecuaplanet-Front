@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://192.168.100.176:8080/api/gemini/';
+const baseURL = 'http://192.168.100.183:8080/api/gemini/';
 
 export async function getCultivo(text: string) {
   try {
